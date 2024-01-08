@@ -14,7 +14,7 @@ RUN yarn
 COPY . ./
 
 # 디버그 개발용 실행
-# RUN npm run dev
+# RUN yarm dev
 
 # 아래는 배포용
-# RUN npm run buil
+# RUN yarn build
