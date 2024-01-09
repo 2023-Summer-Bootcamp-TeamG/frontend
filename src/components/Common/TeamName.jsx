@@ -1,0 +1,13 @@
+export default function TeamName() {
+  return (
+    <div
+      className="text-center font-black m-5 text-2xl italic"
+      style={{
+        textShadow: '0px 4px 4px rgba(0, 0, 0, 0.5)',
+        WebkitTextStroke: '1.2px white',
+      }}
+    >
+      DoodleFilm
+    </div>
+  );
+}
