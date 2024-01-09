@@ -1,10 +1,11 @@
 import surf from '../../assets/images/next.png';
 
-export default function Next() {
+export default function NextBtn() {
   return (
     <img
+      className="cursor-pointer"
       src={surf}
-      alt="Next"
+      alt="NextBtn"
       onClick={() => {
         console.log('test');
       }}
