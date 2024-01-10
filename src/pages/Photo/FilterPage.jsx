@@ -1,7 +1,7 @@
-import TeamName from '../components/Common/TeamName';
-import NextBtn from '../components/Common/NextBtn';
-import frame from '../assets/frame/2x2_w.png';
-import FilterBtn from '../components/Photo/Fliter/FilterBtn';
+import frame from '../../assets/frame/2x2_w.png';
+import NextBtn from '../../components/Common/NextBtn';
+import TeamName from '../../components/Common/TeamName';
+import FilterBtn from '../../components/Photo/Fliter/FilterBtn';
 
 export default function FilterPage() {
   return (

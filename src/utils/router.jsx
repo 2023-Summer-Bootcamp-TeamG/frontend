@@ -1,9 +1,14 @@
 import { createBrowserRouter } from 'react-router-dom';
-import LoginPage from '../pages/LoginPage';
+
 import MainPage from '../pages/MainPage';
-import RegisterPage from '../pages/RegisterPage';
+import BackgroundPage from '../pages/Photo/BackgroundPage';
+import CustomPage from '../pages/Photo/CustomPage';
+import FilterPage from '../pages/Photo/FilterPage';
 import FinalPage from '../pages/Photo/FinalPage';
-import FilterPage from '../pages/FilterPage';
+import SelectPage from '../pages/Photo/SelectPage';
+import AlbumPage from '../pages/User/AlbumPage';
+import LoginPage from '../pages/User/LoginPage';
+import RegisterPage from '../pages/User/RegisterPage';
 
 const routers = createBrowserRouter([
   {
@@ -19,11 +24,27 @@ const routers = createBrowserRouter([
     element: <RegisterPage />,
   },
   {
+    path: '/album',
+    element: <AlbumPage />,
+  },
+  {
     path: '/photo/',
     children: [
       {
+        path: 'select',
+        element: <SelectPage />,
+      },
+      {
+        path: 'background',
+        element: <BackgroundPage />,
+      },
+      {
         path: 'filter',
         element: <FilterPage />,
+      },
+      {
+        path: 'custom',
+        element: <CustomPage />,
       },
       {
         path: 'final',
