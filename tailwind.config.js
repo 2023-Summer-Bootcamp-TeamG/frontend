@@ -6,6 +6,7 @@ export default {
       colors: {
         'custom-grey': '#f2f1f0',
         'lime-custom': '#D2F05D',
+        'light-brown': '#B59F9F',
       },
     },
   },
