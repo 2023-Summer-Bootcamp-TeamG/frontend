@@ -1,6 +1,8 @@
+import '../../../style/RotateImg.css';
+
 import { useState } from 'react';
+
 import test from '../../../assets/test.png';
-import '../../../style/CustomImg.css';
 
 export default function RotateImg() {
   const [rotation, setRotation] = useState({ x: 0, y: 0 });
