@@ -1,4 +1,4 @@
-import TextBox from '../../components/Register/TextBox';
+import TextBox from '../components/Register/TextBox';
 
 export default function RegisterPage() {
   return (

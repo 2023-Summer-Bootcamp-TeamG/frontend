@@ -1,5 +1,5 @@
-import fin from '../../../assets/images/finish.png';
 import people from '../../../assets/images/pixelpeople.png';
+import fin from '../../../assets/images/finish.png';
 
 export default function Footer() {
   return (

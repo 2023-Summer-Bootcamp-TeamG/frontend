@@ -1,7 +1,8 @@
 import TeamName from '../../components/Common/TeamName';
-import Footer from '../../components/Photo/Final/Footer';
 import RotateImg from '../../components/Photo/Final/RotateImg';
 import SaveBtn from '../../components/Photo/Final/SaveBtn';
+
+import Footer from '../../components/Photo/Final/Footer';
 
 export default function FinalPage() {
   return (
