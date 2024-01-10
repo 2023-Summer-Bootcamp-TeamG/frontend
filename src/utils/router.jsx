@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import LoginPage from '../pages/LoginPage';
 import MainPage from '../pages/MainPage';
 import RegisterPage from '../pages/RegisterPage';
+import FinalPage from '../pages/Photo/FinalPage';
 
 const routers = createBrowserRouter([
   {
@@ -15,6 +16,15 @@ const routers = createBrowserRouter([
   {
     path: '/register',
     element: <RegisterPage />,
+  },
+  {
+    path: '/photo/',
+    children: [
+      {
+        path: 'final',
+        element: <FinalPage />,
+      },
+    ],
   },
 ]);
 

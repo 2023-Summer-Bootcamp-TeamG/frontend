@@ -1,0 +1,13 @@
+.overlay {
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 225, 134, 0.8) 45%,
+    rgba(174, 120, 255, 0.6) 50%,
+    transparent 54%
+  );
+  filter: brightness(0.8) opacity(0.4);
+  mix-blend-mode: color-dodge;
+  background-size: 150% 150%;
+  background-position: 100%;
+}
