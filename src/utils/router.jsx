@@ -3,6 +3,7 @@ import LoginPage from '../pages/LoginPage';
 import MainPage from '../pages/MainPage';
 import RegisterPage from '../pages/RegisterPage';
 import FinalPage from '../pages/Photo/FinalPage';
+import FilterPage from '../pages/FilterPage';
 
 const routers = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const routers = createBrowserRouter([
   {
     path: '/photo/',
     children: [
+      {
+        path: 'filter',
+        element: <FilterPage />,
+      },
       {
         path: 'final',
         element: <FinalPage />,
