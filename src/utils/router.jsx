@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import MainPage from '../pages/MainPage';
 import BackgroundPage from '../pages/Photo/BackgroundPage';
+import BasicFramePage from '../pages/Photo/BasicFramePage';
 import CustomPage from '../pages/Photo/CustomPage';
 import FilterPage from '../pages/Photo/FilterPage';
 import FinalPage from '../pages/Photo/FinalPage';
@@ -30,6 +31,10 @@ const routers = createBrowserRouter([
   {
     path: '/photo/',
     children: [
+      {
+        path: 'basicFrame',
+        element: <BasicFramePage />,
+      },
       {
         path: 'select',
         element: <SelectPage />,

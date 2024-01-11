@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import TeamName from '../components/Common/TeamName';
-import CutBtn from '../components/Photo/BasicFrame/CutBtn';
-import Cut4 from '../components/Photo/BasicFrame/Cut4';
-import Cut8 from '../components/Photo/BasicFrame/Cut8';
-import Cut6 from '../components/Photo/BasicFrame/Cut6';
+
+import TeamName from '../../components/Common/TeamName';
+import Cut4 from '../../components/Photo/BasicFrame/Cut4';
+import Cut6 from '../../components/Photo/BasicFrame/Cut6';
+import Cut8 from '../../components/Photo/BasicFrame/Cut8';
+import CutBtn from '../../components/Photo/BasicFrame/CutBtn';
 
 export default function BasicFramePage() {
   const [select, setSelect] = useState('');
