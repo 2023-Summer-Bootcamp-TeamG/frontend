@@ -4,7 +4,7 @@ import routers from './utils/router';
 
 function App() {
   return (
-    <div className=" bg-custom-grey h-screen">
+    <div className=" bg-custom-grey h-full">
       <RouterProvider router={routers} />
     </div>
   );
