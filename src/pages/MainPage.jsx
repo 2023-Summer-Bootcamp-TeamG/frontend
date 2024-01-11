@@ -1,6 +1,6 @@
 import Lottie from 'lottie-react';
 
-import pixelHeart from '../assets/Lottie/Animation - 1704960241879.json';
+import pixelHeart from '../assets/Lottie/heart/Animation - 1704960241879.json';
 import Header from '../components/Common/Header';
 import StartBtn from '../components/Main/StartBtn';
 
