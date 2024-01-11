@@ -3,7 +3,7 @@ export default function Header() {
     <div className="flex justify-around items-center bg-gradient-to-b from-lime-custom to-gray-[#f2f1f0] h-28 w-screen">
       <div />
       <div
-        className="font-black  text-5xl font-extrabold tracking-tighter italic ml-56 "
+        className="font-black  text-5xl font-extrabold tracking-tighter italic ml-48 "
         style={{
           textShadow: '0px 4px 4px rgba(0, 0, 0, 0.5)',
           WebkitTextStroke: '1.2px white',
