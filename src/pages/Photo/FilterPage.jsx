@@ -1,5 +1,5 @@
 import frame from '../../assets/frame/2x2_w.png';
-import NextBtn from '../../components/Common/NextBtn';
+import ProgressFooter from '../../components/Common/ProgressFooter';
 import TeamName from '../../components/Common/TeamName';
 import FilterBtn from '../../components/Photo/Fliter/FilterBtn';
 
@@ -24,10 +24,7 @@ export default function FilterPage() {
           />
         </div>
       </div>
-      <div className="flex absolute bottom-0 ml-60">
-        <div className="bg-[url('./assets/images/pixelpeople.png')] items-ends h-32 w-[32.2rem]" />
-        <NextBtn />
-      </div>
+      <ProgressFooter width="w-[32.2rem]" />
     </div>
   );
 }
