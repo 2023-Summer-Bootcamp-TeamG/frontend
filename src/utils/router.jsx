@@ -10,16 +10,11 @@ import SelectPage from '../pages/Photo/SelectPage';
 import AlbumPage from '../pages/User/AlbumPage';
 import LoginPage from '../pages/User/LoginPage';
 import RegisterPage from '../pages/User/RegisterPage';
-import TestPage from '../pages/User/TestPage';
 
 const routers = createBrowserRouter([
   {
     path: '/',
     element: <MainPage />,
-  },
-  {
-    path: '/test',
-    element: <TestPage />,
   },
   {
     path: '/login',
