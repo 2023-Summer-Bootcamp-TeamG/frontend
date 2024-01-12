@@ -24,7 +24,7 @@ export default function FilterPage() {
           />
         </div>
       </div>
-      <ProgressFooter width="w-[32.2rem]" />
+      <ProgressFooter width="w-[32.2rem]" path="/custom" />
     </div>
   );
 }

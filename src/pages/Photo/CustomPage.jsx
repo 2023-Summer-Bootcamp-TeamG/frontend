@@ -61,7 +61,7 @@ export default function CustomPage() {
         </div>
       </div>
       <div>
-        <ProgressFooter width="w-[40.4rem]" />
+        <ProgressFooter width="w-[40.4rem]" path="/final" />
       </div>
     </div>
   );

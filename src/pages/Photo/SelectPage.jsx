@@ -9,7 +9,7 @@ export default function SelectPage() {
       <div className="flex justify-center mt-6">
         <img src={frame} alt="Frame" />
       </div>
-      <ProgressFooter width="w-[13.85rem]" />
+      <ProgressFooter width="w-[13.85rem]" path="/background" />
     </div>
   );
 }
