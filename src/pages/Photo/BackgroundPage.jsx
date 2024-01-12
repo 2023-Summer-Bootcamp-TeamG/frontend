@@ -12,7 +12,7 @@ export default function BackgroundPage() {
           <img alt="frame" src={frame} className="" />
         </div>
         <SelectBackground />
-        <ProgressFooter width="w-[19.2rem]" />
+        <ProgressFooter width="w-[19.2rem]" path="/filter" />
       </div>
     </div>
   );

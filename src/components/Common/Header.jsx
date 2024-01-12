@@ -1,10 +1,13 @@
+import { Link } from 'react-router-dom';
+
 import logo from '../../assets/Logo/Logo.png';
 
 export default function Header() {
   return (
     <div className="flex justify-between items-center bg-gradient-to-b from-lime-custom to-gray-[#f2f1f0] h-28 w-screen">
       <img alt="logo" src={logo} className="h-20" />
-      <div
+      <Link
+        to="/"
         className="font-black ml-10  text-5xl  tracking-tighter italic"
         style={{
           textShadow: '0px 4px 4px rgba(0, 0, 0, 0.5)',
@@ -12,15 +15,13 @@ export default function Header() {
         }}
       >
         DoodleFilm
-      </div>
+      </Link>
 
       <div className="text-xl font-normal mr-10">
-        <button type="button" className="mr-12">
+        <Link to="/login" className="mr-12">
           Login
-        </button>
-        <button type="button" className="">
-          Album
-        </button>
+        </Link>
+        <Link to="/album">Album</Link>
       </div>
     </div>
   );

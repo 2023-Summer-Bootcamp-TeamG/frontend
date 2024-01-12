@@ -1,15 +1,11 @@
+import { Link } from 'react-router-dom';
+
 import surf from '../../assets/images/next.png';
 
-export default function NextBtn() {
+export default function NextBtn({ path }) {
   return (
-    <img
-      className="cursor-pointer"
-      src={surf}
-      alt="NextBtn"
-      onClick={() => {
-        console.log('test');
-      }}
-      aria-hidden="true"
-    />
+    <Link to={`/photo${path}`}>
+      <img className="cursor-pointer" src={surf} alt="NextBtn" />
+    </Link>
   );
 }

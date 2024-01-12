@@ -11,7 +11,10 @@ export default function Modal({ setModal }) {
       <div className="w-[45rem] bg-white rounded-md h-[37em] modal-content">
         <div className="flex justify-between">
           <div className="m-6 ml-20 text-4xl">제목</div>
-          <div className="m-4 text-3xl " onClick={() => setModal(false)}>
+          <div
+            className="m-4 text-3xl cursor-pointer"
+            onClick={() => setModal(false)}
+          >
             <IoClose />
           </div>
         </div>
