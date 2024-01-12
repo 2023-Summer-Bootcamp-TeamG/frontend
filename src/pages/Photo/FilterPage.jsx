@@ -5,7 +5,7 @@ import FilterBtn from '../../components/Photo/Fliter/FilterBtn';
 
 export default function FilterPage() {
   return (
-    <div>
+    <div className="h-screen">
       <div>
         <TeamName />
       </div>
