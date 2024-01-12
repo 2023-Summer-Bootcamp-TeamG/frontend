@@ -1,28 +1,27 @@
-import TextBox from '../../components/Register/TextBox';
+import { Link } from 'react-router-dom';
+
+import InputBox from '../../components/User/InputBox';
+import UserBtn from '../../components/User/UserBtn';
+import UserLink from '../../components/User/UserLink';
 
 export default function RegisterPage() {
   return (
-    <div className="bg-[url('./assets/images/pixel1.png')] h-screen w-screen bg-contain flex flex-col px-80 ">
-      <div className="">
-        <div className=" mb-2 mt-20 text-3xl font-bold text-black italic">
-          backToThe2010s
-        </div>
-        <div className=" mt-8 text-3xl font-bold text-blue-700">
-          회원가입을 위해
-        </div>
-        <div className="font-bold text-3xl mb-8 text-blue-700">
-          정보를 입력해주세요
-        </div>
-        <TextBox title="* 닉네임" ph="홍길동" type="text" />
-        <TextBox title="* 이메일" ph="testman@gamil.com" type="text" />
-        <TextBox title="* 비밀번호" ph="password" type="password" />
-        <TextBox title="* 비밀번호 확인" ph="password" type="password" />
-        <button
-          type="button"
-          className="ml-52 mt-16 font-bold flex item-center p-3 justify-center rounded-md bg-black text-white h-12 w-96"
-        >
-          완료
-        </button>
+    <div className="bg-[url('./assets/images/pixel1.png')] h-screen w-screen bg-contain flex justify-center items-center ">
+      <div className="border-4 bg-white rounded-lg border-black flex flex-col justify-center items-center w-[32rem]">
+        <Link to="/" className="font-black italic text-5xl mt-8 mb-9">
+          DoodleFilm
+        </Link>
+        <InputBox title="닉네임" placeholder="홍길동" />
+        <InputBox title="이메일" placeholder="testman@gmail.com" />
+        <InputBox title="비밀번호" placeholder="password" />
+        <InputBox title="비밀번호 확인" placeholder="password" />
+
+        <UserBtn title="회원가입" />
+        <UserLink
+          question="계정이 이미 존재하신다면"
+          path="/login"
+          title="로그인"
+        />
       </div>
     </div>
   );
