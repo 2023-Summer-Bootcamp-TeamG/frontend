@@ -10,7 +10,7 @@ export default function BasicFramePage() {
   const [select, setSelect] = useState('');
 
   return (
-    <div>
+    <div className="h-screen">
       <TeamName />
       <div className="flex justify-center">
         <div className="text-xl m-14">
