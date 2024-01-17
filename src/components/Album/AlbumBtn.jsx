@@ -1,7 +1,7 @@
 export default function AlbumBtn({ setModal, imageUrl }) {
   return (
     <div
-      className="rounded-md flex items-center justify-center h-[17rem] w-[17rem] bg-stone-300"
+      className="rounded-md flex items-center m-4 justify-center h-[17rem] w-[17rem] bg-stone-300"
       onClick={() => setModal(true)}
       aria-hidden="true"
     >

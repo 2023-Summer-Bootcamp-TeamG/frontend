@@ -30,22 +30,20 @@ export default function AlbumPage() {
   };
 
   return (
-    <div className="h-screen">
+    <div>
       <div>
         <Header />
       </div>
       {images && images.length > 0 && (
-        <div className="flex justify-between">
-          <div className="flex p-12">
+        <div className="flex justify-center">
+          <div className="grid grid-cols-4">
             {images.map((image, index) => (
-              <React.Fragment key={index}>
-                <AlbumBtn
-                  setModal={() => openModal(image)}
-                  imageUrl={image.url}
-                  title={image.title}
-                />
-                {index < images.length - 1 && <div className="m-10" />}
-              </React.Fragment>
+              <AlbumBtn
+                key={index}
+                setModal={() => openModal(image)}
+                imageUrl={image.url}
+                title={image.title}
+              />
             ))}
           </div>
         </div>
@@ -55,6 +53,7 @@ export default function AlbumPage() {
           setModal={() => setModal(false)}
           imageUrl={selectedImage.url}
           title={selectedImage.title}
+          id={selectedImage.id}
         />
       )}
     </div>

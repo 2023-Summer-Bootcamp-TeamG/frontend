@@ -3,9 +3,17 @@
 // eslint-disable-next-line simple-import-sort/imports
 import { MdDownload, MdModeEdit } from 'react-icons/md';
 import { IoClose } from 'react-icons/io5';
+import apiV1Instance from '../../api/api-instance';
 
-export default function Modal({ setModal, imageUrl, title }) {
-  console.log(imageUrl);
+export default function Modal({ setModal, imageUrl, title, id }) {
+  console.log(id);
+  const deleteimage = async () => {
+    try {
+      await apiV1Instance.delete(`/photos/delete/${id}`, { id });
+    } catch (error) {
+      alert(error);
+    }
+  };
   return (
     <div className="fixed top-0 left-0 flex items-center justify-center w-full h-full bg-black bg-opacity-50">
       <div className="w-[45rem] bg-white rounded-md h-[37em] modal-content">
@@ -37,8 +45,10 @@ export default function Modal({ setModal, imageUrl, title }) {
           <button
             type="button"
             className="flex h-10 p-2 pl-2 bg-white border border-black rounded-md w-26"
+            onClick={() => deleteimage(id)}
           >
-            삭제하기 <MdDownload className="m-1 mt-1" />
+            삭제하기
+            <MdDownload className="m-1 mt-1" />
           </button>
         </div>
       </div>
