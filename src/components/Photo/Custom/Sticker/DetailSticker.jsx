@@ -31,7 +31,7 @@ export default function DetailStickers({ onClose, title }) {
       addSticker({
         image,
         position: { top: 100, left: 100 },
-        size, // 여기서 이미지의 실제 크기를 사용합니다
+        size,
       });
     } catch (error) {
       console.error('Error getting image size:', error);
