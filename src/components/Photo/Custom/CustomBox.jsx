@@ -11,7 +11,7 @@ import Text from './Text';
 export default function CustomBox() {
   const [select, setSelect] = useState('Draw');
   return (
-    <div className="basis-1/4 mr-10 flex flex-col items-center">
+    <div className="ml-36 flex flex-col items-center">
       <div className="flex text-gray-400 font-bold text-base">
         <div
           className={`flex flex-col items-center cursor-pointer mr-10 ${
