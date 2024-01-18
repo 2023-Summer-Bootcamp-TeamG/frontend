@@ -31,7 +31,6 @@ export default function CustomPage() {
   const captureContent = async () => {
     const canvas = await html2canvas(contentRef.current);
     const image = canvas.toDataURL('image/png');
-    console.log(image);
     setCapturedImage(image);
   };
 
