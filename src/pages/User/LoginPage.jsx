@@ -12,6 +12,7 @@ export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+
   const navigate = useNavigate();
   const handleSubmit = async () => {
     if (!email) return setErrorMessage('이메일을 입력해 주세요.');
@@ -32,11 +33,13 @@ export default function LoginPage() {
       );
     }
   };
+
   const EnterPress = (e) => {
     if (e.key === 'Enter') {
       handleSubmit();
     }
   };
+
   return (
     <div className="bg-[url('./assets/images/pixel1.png')] h-screen w-screen bg-contain flex justify-center items-center ">
       <div className="border-4 bg-white rounded-lg border-black flex flex-col justify-center items-center w-[32rem]">
