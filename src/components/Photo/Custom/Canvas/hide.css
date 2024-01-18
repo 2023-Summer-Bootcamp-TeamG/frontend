@@ -1,0 +1,7 @@
+.hide-button {
+  display: none;
+}
+
+.rnd-hover:hover .hide-button {
+  display: block;
+}
