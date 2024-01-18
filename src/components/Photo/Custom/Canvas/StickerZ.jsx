@@ -38,7 +38,7 @@ export default function StickerZ({ activeTab }) {
 
   return (
     <div
-      className="h-[38rem] w-[40rem] mr-36  absolute bg-transparent "
+      className="h-[38rem] w-[40rem] absolute bg-transparent "
       style={{
         zIndex: activeTab === 1 ? 3 : 1,
       }}

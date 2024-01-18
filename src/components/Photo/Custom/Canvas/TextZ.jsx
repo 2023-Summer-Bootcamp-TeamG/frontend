@@ -22,7 +22,7 @@ export default function TextZ({ activeTab }) {
 
   return (
     <div
-      className="h-[38rem] w-[40rem] mr-36 absolute bg-transparent text-yellow-500"
+      className="h-[38rem] w-[40rem] absolute bg-transparent "
       style={{
         zIndex: activeTab === 2 ? 3 : 1,
       }}

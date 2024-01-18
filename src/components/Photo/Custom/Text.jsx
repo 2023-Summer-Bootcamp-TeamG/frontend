@@ -107,7 +107,7 @@ export default function Text() {
         onClick={handleAddText}
         className="w-[15rem] bg-blue-500 text-white p-2 rounded"
       >
-        생성
+        TextBox 생성
       </button>
     </div>
   );

@@ -13,7 +13,7 @@ export default function DrawZ({ activeTab }) {
   const { brushSize } = useBrushSizeStore();
   return (
     <div
-      className="h-[28rem] w-[40rem] mr-36  absolute bg-transparent"
+      className="h-[28rem] w-[40rem]  absolute bg-transparent"
       style={{ zIndex: activeTab === 0 ? 3 : 1 }}
     >
       {activeTab === 0 ? (
