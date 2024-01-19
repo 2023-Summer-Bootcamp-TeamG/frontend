@@ -1,5 +1,7 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Outlet } from 'react-router-dom';
 
+import NoAuthWhenLoggedIn from '../components/Router/NoAuthWhenLoggedIn';
+import RequireAuth from '../components/Router/RequireAuth';
 import MainPage from '../pages/MainPage';
 import BackgroundPage from '../pages/Photo/BackgroundPage';
 import BasicFramePage from '../pages/Photo/BasicFramePage';
@@ -18,18 +20,35 @@ const routers = createBrowserRouter([
   },
   {
     path: '/login',
-    element: <LoginPage />,
+    element: (
+      <NoAuthWhenLoggedIn>
+        <LoginPage />
+      </NoAuthWhenLoggedIn>
+    ),
   },
   {
     path: '/register',
-    element: <RegisterPage />,
+    element: (
+      <NoAuthWhenLoggedIn>
+        <RegisterPage />
+      </NoAuthWhenLoggedIn>
+    ),
   },
   {
     path: '/album',
-    element: <AlbumPage />,
+    element: (
+      <RequireAuth>
+        <AlbumPage />
+      </RequireAuth>
+    ),
   },
   {
     path: '/photo/',
+    element: (
+      <RequireAuth>
+        <Outlet /> {/* 중첩된 경로들을 위한 Outlet */}
+      </RequireAuth>
+    ),
     children: [
       {
         path: 'basicFrame',

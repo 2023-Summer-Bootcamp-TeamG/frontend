@@ -7,24 +7,31 @@ import apiV1Instance from '../../api/api-instance';
 import InputBox from '../../components/User/InputBox';
 import UserBtn from '../../components/User/UserBtn';
 import UserLink from '../../components/User/UserLink';
+import useIsLoginStore from '../../stores/isLoginStore';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const { setIsLogin } = useIsLoginStore();
+
   const navigate = useNavigate();
   const handleSubmit = async () => {
     if (!email) return setErrorMessage('이메일을 입력해 주세요.');
     if (!password) return setErrorMessage('비밀번호를 입력해 주세요.');
     setErrorMessage(''); // 초기화
+
     const data = {
       email: email,
       password: password,
     };
+
     try {
       const response = await apiV1Instance.post('/auth/login', data);
-      console.log(response.data);
       navigate('/');
+      setTimeout(() => {
+        setIsLogin(true);
+      }, 100);
     } catch (error) {
       // 에러 뜰 때
       setErrorMessage(
@@ -32,11 +39,13 @@ export default function LoginPage() {
       );
     }
   };
+
   const EnterPress = (e) => {
     if (e.key === 'Enter') {
       handleSubmit();
     }
   };
+
   return (
     <div className="bg-[url('./assets/images/pixel1.png')] h-screen w-screen bg-contain flex justify-center items-center ">
       <div className="border-4 bg-white rounded-lg border-black flex flex-col justify-center items-center w-[32rem]">
