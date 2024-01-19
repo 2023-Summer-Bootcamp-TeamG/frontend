@@ -11,7 +11,7 @@ export default function Header() {
       <img alt="logo" src={logo} className="h-20" />
       <Link
         to="/"
-        className="font-black ml-10  text-5xl  tracking-tighter italic"
+        className="ml-10 text-5xl italic font-black tracking-tighter"
         style={{
           textShadow: '0px 4px 4px rgba(0, 0, 0, 0.5)',
           WebkitTextStroke: '1.2px white',
@@ -19,6 +19,7 @@ export default function Header() {
       >
         DoodleFilm
       </Link>
+
 
       <div className="text-xl font-normal mr-10">
         {isLogin ? (
@@ -28,7 +29,6 @@ export default function Header() {
             Login
           </Link>
         )}
-
         <Link to="/album">Album</Link>
       </div>
     </div>
