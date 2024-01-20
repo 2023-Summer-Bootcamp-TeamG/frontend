@@ -20,7 +20,6 @@ export default function Header() {
         DoodleFilm
       </Link>
 
-
       <div className="text-xl font-normal mr-10">
         {isLogin ? (
           <LogoutBtn />
