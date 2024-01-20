@@ -8,8 +8,8 @@ import frame1 from '../../../assets/frame/1x1.png';
 export default function Cut1() {
   const navigate = useNavigate();
   const handleImageClick1 = () => {
-    const imageSrc = frame1;
-    navigate('/photo/Background', { state: { imageSrc } });
+    const imageSrc = '1x1';
+    navigate('/photo/Background', { state: imageSrc });
   };
   return (
     <div className="flex items-center p-10">

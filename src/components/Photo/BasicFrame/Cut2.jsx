@@ -9,12 +9,12 @@ import frame1 from '../../../assets/frame/2x1_w.png';
 export default function Cut2() {
   const navigate = useNavigate();
   const handleImageClick1 = () => {
-    const imageSrc = frame1;
-    navigate('/photo/Background', { state: { imageSrc } });
+    const imageSrc = '2x1_w';
+    navigate('/photo/Background', { state: imageSrc });
   };
   const handleImageClick2 = () => {
-    const imageSrc = frame2;
-    navigate('/photo/Background', { state: { imageSrc } });
+    const imageSrc = '2x1_l';
+    navigate('/photo/Background', { state: imageSrc });
   };
   return (
     <div className="flex items-center p-10">

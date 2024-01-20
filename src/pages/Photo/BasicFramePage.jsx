@@ -1,14 +1,18 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import TeamName from '../../components/Common/TeamName';
 import Cut1 from '../../components/Photo/BasicFrame/Cut1';
 import Cut2 from '../../components/Photo/BasicFrame/Cut2';
 import Cut4 from '../../components/Photo/BasicFrame/Cut4';
 import CutBtn from '../../components/Photo/BasicFrame/CutBtn';
+import useImageStore from '../../stores/Background/useImageStore';
 
 export default function BasicFramePage() {
   const [select, setSelect] = useState('');
-
+  const { setImageUrl } = useImageStore();
+  useEffect(() => {
+    setImageUrl('');
+  }, []);
   return (
     <div className="h-screen">
       <TeamName />
