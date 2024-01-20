@@ -12,16 +12,19 @@ export default function Cut1() {
     navigate('/photo/Background', { state: imageSrc });
   };
   return (
-    <div className="flex items-center p-10">
-      <div className="relative h-60 group">
-        <img
-          src={frame1}
-          alt="frame1"
-          className="overflow-hidden transition-transform origin-center transform h-80 group-hover:scale-105"
-          onClick={() => {
-            handleImageClick1();
-          }}
-        />
+    <div className="top-0">
+      <div className="top-0 flex items-center p-10">
+        <div className="relative h-60 group">
+          <img
+            src={frame1}
+            alt="frame1"
+            className="overflow-hidden transition-transform origin-center transform h-80 group-hover:scale-105"
+            onClick={() => {
+              handleImageClick1();
+            }}
+          />
+          <div className="m-10" />
+        </div>
       </div>
     </div>
   );
