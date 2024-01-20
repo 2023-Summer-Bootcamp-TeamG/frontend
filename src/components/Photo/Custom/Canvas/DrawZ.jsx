@@ -21,10 +21,8 @@ export default function DrawZ({ activeTab }) {
       ) : (
         <div className="h-12" />
       )}
-      {/* <DrawBtns canvasRef={canvasRef} /> */}
       <CanvasDraw
         ref={canvasRef}
-        // loadTimeOffset={1}
         imgSrc={frame}
         canvasWidth={650}
         canvasHeight={457}

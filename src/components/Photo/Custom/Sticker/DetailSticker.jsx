@@ -3,6 +3,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/no-array-index-key */
+import { useEffect, useState } from 'react';
 import { FiPlusCircle } from 'react-icons/fi';
 import { MdOutlineArrowBackIosNew } from 'react-icons/md';
 
@@ -13,7 +14,8 @@ import getImageStickers from '../../../../utils/iamge';
 export default function DetailStickers({ onClose, title }) {
   const addSticker = useStickerStore((state) => state.addSticker);
   const stickers = getImageStickers(title);
-  const mySticker = [];
+  const [myStickers, setMyStickers] = useState([]);
+  const [refresh, setRefresh] = useState(1);
 
   const getImageSize = (src) => {
     return new Promise((resolve) => {
@@ -40,21 +42,41 @@ export default function DetailStickers({ onClose, title }) {
 
   const getMyStickers = async () => {
     try {
-      const response = await apiV1Instance.get('/stickers/');
-      console.log(response.data);
-      // myStickers 상태 만들어서 거기에 저장
+      const response = await apiV1Instance.get('/stickers/?page=1&size=12');
+      setMyStickers(response.data);
     } catch (error) {
       alert(error);
     }
   };
 
-  const addMyStickers = async () => {
+  const uploadImage = async (file) => {
     try {
-      // 스티커 추가 로직
+      const formData = new FormData();
+      formData.append('image', file);
+
+      const response = await apiV1Instance.post('/stickers/', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      console.log(response.data);
+      setRefresh(refresh * -1);
     } catch (error) {
-      alert(error);
+      alert('Error uploading image:', error);
     }
   };
+
+  const handleFileSelect = (files) => {
+    if (files.length > 0) {
+      const selectedFile = files[0];
+      uploadImage(selectedFile);
+    }
+  };
+
+  useEffect(() => {
+    getMyStickers();
+  }, [refresh]);
+  // 백에서 시간 단축 시켜준다 함. 굳이 롱폴링 안 해도 될듯. 시간 단축이 얼마나 되느냐에 따라 달라지겠지만
 
   return (
     <div className="bg-white mt-4 p-6 h-[30rem] w-[19rem] rounded-xl border-black border shadow-[0_4px_12.3px_0px_rgba(0,0,0,0.3)]">
@@ -75,19 +97,26 @@ export default function DetailStickers({ onClose, title }) {
       )}
       {title === '나만의 스티커' ? (
         <div className="m-4 grid grid-cols-4">
-          {mySticker.map((image, index) => (
+          {myStickers.map((image, index) => (
             <img
               className="m-2 cursor-pointer"
               key={index}
-              src={image}
+              src={image.image}
               alt={`Sticker ${index + 1}`}
-              onClick={() => handleStickerClick(image)}
+              onClick={() => handleStickerClick(image.image)}
             />
           ))}
+          <input
+            type="file"
+            id="fileInput"
+            accept="image/*"
+            style={{ display: 'none' }}
+            onChange={(e) => handleFileSelect(e.target.files)}
+          />
           <button
-            className="mx-2 h-16 w-12 border border-btn-grey flex justify-center items-center rounded-md"
+            className="ml-4 h-16 w-12 border border-btn-grey flex justify-center items-center rounded-md"
             onClick={() => {
-              addMyStickers();
+              document.getElementById('fileInput').click();
             }}
           >
             <FiPlusCircle size={30} color="#BEBEBE" />
