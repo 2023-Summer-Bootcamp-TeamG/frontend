@@ -1,6 +1,9 @@
-export default function Frame4l() {
+export default function Frame4l({ frameUrl }) {
   return (
-    <div className="bg-black w-[19rem] h-[28rem]">
+    <div
+      style={{ backgroundImage: `url(${frameUrl})` }}
+      className="bg-black w-[19rem] h-[28rem] bg-contain"
+    >
       <div className="flex">
         <div>
           <div className="ml-3 m-2 mt-3 bg-white w-[8.2rem] h-[11rem]" />

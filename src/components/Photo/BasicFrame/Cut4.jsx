@@ -10,16 +10,16 @@ import frame3 from '../../../assets/frame/4x1_l.png';
 export default function Cut4() {
   const navigate = useNavigate();
   const handleImageClick1 = () => {
-    const imageSrc = frame1;
-    navigate('/photo/Background', { state: { imageSrc } });
+    const imageSrc = '2x2_w';
+    navigate('/photo/Background', { state: imageSrc });
   };
   const handleImageClick2 = () => {
-    const imageSrc = frame2;
-    navigate('/photo/Background', { state: { imageSrc } });
+    const imageSrc = '2x2_l';
+    navigate('/photo/Background', { state: imageSrc });
   };
   const handleImageClick3 = () => {
-    const imageSrc = frame3;
-    navigate('/photo/Background', { state: { imageSrc } });
+    const imageSrc = '4x1';
+    navigate('/photo/Background', { state: imageSrc });
   };
   return (
     <div className="flex items-center p-10">
