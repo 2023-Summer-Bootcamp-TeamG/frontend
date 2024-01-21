@@ -1,0 +1,19 @@
+/* 스크롤 바 숨기기 */
+.scroll-container {
+  overflow: auto;
+  scrollbar-width: thin; /* Firefox에만 필요한 속성 */
+}
+
+/* WebKit 기반 브라우저 스크롤 바 스타일링 */
+.scroll-container::-webkit-scrollbar {
+  width: 8px; /* 스크롤 바 너비 */
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  background-color: rgb(209 213 219); /* 스크롤 바 바 부분 색상 */
+  border-radius: 10px;
+}
+
+.scroll-container::-webkit-scrollbar-track {
+  background-color: transparent; /* 스크롤 바 바탕 색상 (투명) */
+}

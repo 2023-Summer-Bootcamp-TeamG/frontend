@@ -1,9 +1,11 @@
+/* eslint-disable simple-import-sort/imports */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useEffect, useState } from 'react';
 
 import apiV1Instance from '../../../api/api-instance';
+import './CSB.css';
 import useImageStore from '../../../stores/Background/useImageStore';
 
 export default function SelectBackground({ num }) {
@@ -24,13 +26,13 @@ export default function SelectBackground({ num }) {
   }, []);
 
   return (
-    <div className="basis-1/4 bg-white flex flex-col items-center p-4 overflow-y-auto h-[calc(100vh-5rem)]">
+    <div className="flex flex-col items-center w-[14rem] mt-2 overflow-y-auto h-[calc(73vh)] scroll-container">
       {frames.map((frameItem, index) => (
         <div key={index}>
           <img
             alt="background"
             src={frameItem.image}
-            className="my-4 border-black cursor-pointer max-w-56 max-h-56 hover:border-2"
+            className="mx-1 my-4 border-black cursor-pointer max-w-40 max-h-40 hover:border-2"
             onClick={() => {
               setImageUrl(frameItem.image);
             }}
