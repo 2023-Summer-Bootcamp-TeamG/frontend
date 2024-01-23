@@ -79,7 +79,7 @@ export default function DetailStickers({ onClose, title }) {
   // 백에서 시간 단축 시켜준다 함. 굳이 롱폴링 안 해도 될듯. 시간 단축이 얼마나 되느냐에 따라 달라지겠지만
 
   return (
-    <div className="bg-white mt-4 p-6 h-[30rem] w-[19rem] rounded-xl border-black border shadow-[0_4px_12.3px_0px_rgba(0,0,0,0.3)]">
+    <div className="">
       <div className="font-bold m-1 text-lg flex items-center">
         <MdOutlineArrowBackIosNew
           onClick={onClose}

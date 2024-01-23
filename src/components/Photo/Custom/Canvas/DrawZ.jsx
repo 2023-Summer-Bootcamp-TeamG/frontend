@@ -1,10 +1,11 @@
 /* eslint-disable react/button-has-type */
 import { useRef } from 'react';
-import CanvasDraw from 'react-canvas-draw';
 
-import frame from '../../../../assets/frame/2x2_w.png';
+// import CanvasDraw from 'react-canvas-draw';
+// import frame from '../../../../assets/frame/2x2_w.png';
 import useBrushColorStore from '../../../../stores/Brush/BrushColorStore';
 import useBrushSizeStore from '../../../../stores/Brush/BrushSizeStore';
+import FabricCanvas from '../../../Test/Doodle';
 import DrawBtns from './DrawBtns';
 
 export default function DrawZ({ activeTab }) {
@@ -21,7 +22,7 @@ export default function DrawZ({ activeTab }) {
       ) : (
         <div className="h-12" />
       )}
-      <CanvasDraw
+      {/* <CanvasDraw
         ref={canvasRef}
         imgSrc={frame}
         canvasWidth={650}
@@ -32,7 +33,8 @@ export default function DrawZ({ activeTab }) {
         lazyRadius={0} // 추같은거 길이
         saveData={localStorage.getItem('savedDrawing')}
         immediateLoading // 로드 하면 바로 뜨는거
-      />
+      /> */}
+      <FabricCanvas />
     </div>
   );
 }
