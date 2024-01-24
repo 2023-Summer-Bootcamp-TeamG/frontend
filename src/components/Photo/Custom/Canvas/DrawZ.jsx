@@ -1,16 +1,16 @@
+/* eslint-disable simple-import-sort/imports */
 /* eslint-disable react/button-has-type */
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 import CanvasDraw from 'react-canvas-draw';
-
-import frame from '../../../../assets/frame/2x2_w.png';
+import DrawBtns from './DrawBtns';
 import useBrushColorStore from '../../../../stores/Brush/BrushColorStore';
 import useBrushSizeStore from '../../../../stores/Brush/BrushSizeStore';
-import DrawBtns from './DrawBtns';
 
-export default function DrawZ({ activeTab }) {
+export default function DrawZ({ activeTab, capturedData }) {
   const canvasRef = useRef(null);
   const { brushColor } = useBrushColorStore();
   const { brushSize } = useBrushSizeStore();
+
   return (
     <div
       className="h-[28rem] w-[40rem]  absolute bg-transparent"
@@ -21,11 +21,10 @@ export default function DrawZ({ activeTab }) {
       ) : (
         <div className="h-12" />
       )}
+
       <CanvasDraw
         ref={canvasRef}
-        imgSrc={frame}
-        canvasWidth={650}
-        canvasHeight={457}
+        imgSrc={capturedData}
         brushColor={brushColor}
         catenaryColor={brushColor}
         brushRadius={brushSize} // 붓 두께
