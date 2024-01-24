@@ -25,7 +25,7 @@ export default function BackgroundPage() {
 
   return (
     <div>
-      <Screen>
+      <Screen stateOne={stateOne} path="/photo/select">
         <div className="flex">
           <div className="flex items-center justify-center w-[calc(115vh)] relative">
             {stateOne === '2x2_w' && <Frame4w frameUrl={imageUrl} />}
