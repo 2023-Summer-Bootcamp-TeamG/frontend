@@ -27,7 +27,7 @@ export default function LoginPage() {
     };
 
     try {
-      const response = await apiV1Instance.post('/auth/login', data);
+      const response = await apiV1Instance.post('/auth/login/', data);
       navigate('/');
       setTimeout(() => {
         setIsLogin(true);

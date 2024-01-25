@@ -1,15 +1,13 @@
-/* eslint-disable react/button-has-type */
 import { fabric } from 'fabric';
 import { useEffect, useRef } from 'react';
 
-// import CanvasDraw from 'react-canvas-draw';
-// import frame from '../../../../assets/frame/2x2_w.png';
-import useBrushColorStore from '../../../../stores/Brush/BrushColorStore';
-import useBrushSizeStore from '../../../../stores/Brush/BrushSizeStore';
+import useBrushColorStore from '../../stores/Brush/BrushColorStore';
+import useBrushSizeStore from '../../stores/Brush/BrushSizeStore';
 
-export default function DrawZ({ activeTab }) {
+export default function ZTestD({ select }) {
   const canvasRef = useRef(null);
   const fabricCanvasRef = useRef(null);
+
   const { brushColor } = useBrushColorStore();
   const { brushSize } = useBrushSizeStore();
 
@@ -37,10 +35,11 @@ export default function DrawZ({ activeTab }) {
         parseInt(brushSize, 10) || 1;
     }
   }, [brushColor, brushSize]);
+
   return (
     <div
-      className="h-[28rem] w-[40rem]  absolute bg-transparent"
-      style={{ zIndex: activeTab === 'Draw' ? 3 : 1 }}
+      className="h-[28rem] w-[40rem] bg-transparent absolute bg-orange-600"
+      style={{ zIndex: select === 'Draw' ? 3 : 1 }}
     >
       <canvas ref={canvasRef} id="canvas">
         a

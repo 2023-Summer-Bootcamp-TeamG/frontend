@@ -5,11 +5,14 @@
 
 import { useState } from 'react';
 
+// import frame from '../assets/frame/2x2_w.png'
 import Screen from '../components/Common/Screen';
 import DrawTest from '../components/Test/sidebar/DrawTest';
 import StickerTest from '../components/Test/sidebar/StickerTest';
 import TextTest from '../components/Test/sidebar/TextTest';
 import Title from '../components/Test/sidebar/Title';
+import ZTestD from '../components/Test/\bZTestD';
+import ZTestS from '../components/Test/ZTestS';
 
 export default function TestPage() {
   const [select, setSelect] = useState('Draw');
@@ -19,8 +22,10 @@ export default function TestPage() {
       <Screen>
         <div className="flex w-full h-full">
           <div className="bg-orange-300 w-[55rem] border border-black flex justify-center items-center">
-            <div className="h-[28rem] w-[40rem] border border-black">
-              사진들어갈 곳(너비랑 높이는 넘어오는 사진 크기에 맞춰)
+            <div className="h-[28rem] w-[40rem] border bg-[url('./assets/frame/2x2_w.png')]  border-black">
+              <ZTestD select={select} />
+              <ZTestS select={select} />
+              zxcv
             </div>
           </div>
           <div className=" w-[25rem] ">

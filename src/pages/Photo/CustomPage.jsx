@@ -55,9 +55,9 @@ export default function CustomPage() {
           className="h-[28rem] w-[40rem] flex items-center justify-center relative mr-28"
           ref={contentRef}
         >
-          <DrawZ activeTab={activeTab} />
-          <StickerZ activeTab={activeTab} />
-          <TextZ activeTab={activeTab} />
+          <DrawZ activeTab={select} />
+          <StickerZ activeTab={select} />
+          <TextZ activeTab={select} />
         </div>
         <CustomModal
           isOpen={modalOpen}
