@@ -1,16 +1,12 @@
+/* eslint-disable import/newline-after-import */
+/* eslint-disable simple-import-sort/imports */
 import { Link } from 'react-router-dom';
-
+import logo from '../../assets/logo.png';
 export default function TeamName() {
   return (
-    <div className="text-center font-black p-5 text-2xl italic h-20">
-      <Link
-        style={{
-          textShadow: '0px 4px 4px rgba(0, 0, 0, 0.5)',
-          WebkitTextStroke: '1.2px white',
-        }}
-        to="/"
-      >
-        DoodleFilm
+    <div className="flex ml-12 items-center">
+      <Link to="/">
+        <img src={logo} alt="logo" className="ml-2 h-[6rem]" />
       </Link>
     </div>
   );
