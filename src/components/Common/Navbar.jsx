@@ -1,15 +1,36 @@
+/* eslint-disable no-lone-blocks */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-import lens from '../../assets/lens.png';
 import next from '../../assets/next.png';
 import prev from '../../assets/prev.png';
 
-export default function Navbar({ path }) {
+export default function Navbar({ pathP, pathN, stateOne }) {
   const navigate = useNavigate();
   return (
-    <div className="flex items-center h-[7rem]">
+    <div className="flex items-center mr-20 justify-end basis-1/3">
+      <img
+        src={prev}
+        alt="prev"
+        className="h-[5rem] w-[6rem] mr-8 cursor-pointer"
+        onClick={() => {
+          navigate(pathP);
+        }}
+      />
+      <img
+        src={next}
+        alt="next"
+        className="h-[5rem] w-[6rem] cursor-pointer"
+        onClick={() => {
+          navigate(pathN, { state: stateOne });
+        }}
+      />
+    </div>
+  );
+}
+{
+  /* <div className="flex items-center h-[7rem]">
       <div className="basis-1/3 pl-12 pb-20 pt-3">
         <Link
           to="/"
@@ -41,6 +62,5 @@ export default function Navbar({ path }) {
           }}
         />
       </div>
-    </div>
-  );
+    </div> */
 }
