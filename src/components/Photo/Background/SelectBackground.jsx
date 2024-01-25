@@ -24,7 +24,7 @@ export default function SelectBackground({ num }) {
   }, []);
 
   return (
-    <div className="basis-1/4 bg-white flex flex-col items-center p-4 overflow-y-auto h-[calc(100vh-5rem)]">
+    <div className="basis-1/4 bg-white flex flex-col items-center p-4 overflow-y-auto h-[calc(100vh-15rem)]">
       {frames.map((frameItem, index) => (
         <div key={index}>
           <img
