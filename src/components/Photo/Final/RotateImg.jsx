@@ -2,9 +2,7 @@ import '../../../style/RotateImg.css';
 
 import { useState } from 'react';
 
-import test from '../../../assets/test.png';
-
-export default function RotateImg() {
+export default function RotateImg({ image }) {
   const [rotation, setRotation] = useState({ x: 0, y: 0 });
   const [backgroundPosition, setBackgroundPosition] = useState({ x: 0, y: 0 });
 
@@ -68,7 +66,7 @@ export default function RotateImg() {
             backgroundPosition: `${backgroundPosition.x}% ${backgroundPosition.y}%`,
           }}
         />
-        <img alt="test" src={test} />
+        <img alt="fi" src={image} className="w-[40rem] h-[26rem]" />
       </div>
     </div>
   );

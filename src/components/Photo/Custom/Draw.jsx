@@ -2,9 +2,8 @@ import { SketchPicker } from 'react-color';
 
 import useBrushColorStore from '../../../stores/Brush/BrushColorStore';
 import useBrushSizeStore from '../../../stores/Brush/BrushSizeStore';
-import DrawBtns from './Canvas/DrawBtns';
 
-export default function Draw({ contentRef }) {
+export default function Draw() {
   const { brushColor, setBrushColor } = useBrushColorStore();
   const { brushSize, setBrushSize } = useBrushSizeStore();
 
@@ -37,7 +36,6 @@ export default function Draw({ contentRef }) {
           style={{ accentColor: `${brushColor}` }}
         />
       </div>
-      <DrawBtns contentRef={contentRef} />
     </div>
   );
 }

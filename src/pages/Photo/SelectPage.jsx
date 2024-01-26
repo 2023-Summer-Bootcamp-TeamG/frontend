@@ -8,7 +8,7 @@ import Frame4long from '../../components/Photo/BasicFrame/Frame4long';
 import Frame2l from '../../components/Photo/BasicFrame/Frame2l';
 import Frame2w from '../../components/Photo/BasicFrame/Frame2w';
 import Frame1 from '../../components/Photo/BasicFrame/Frame1';
-import Frame4l from '../../components/Photo/BasicFrame/Fream4l';
+import Frame4l from '../../components/Photo/BasicFrame/Frame4l';
 import useImageStore from '../../stores/Background/useImageStore';
 import TeamName from '../../components/Common/TeamName';
 import Navbar from '../../components/Common/Navbar';
