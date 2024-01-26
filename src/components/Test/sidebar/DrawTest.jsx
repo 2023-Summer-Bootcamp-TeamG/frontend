@@ -3,7 +3,7 @@ import { SketchPicker } from 'react-color';
 import useBrushColorStore from '../../../stores/Brush/BrushColorStore';
 import useBrushSizeStore from '../../../stores/Brush/BrushSizeStore';
 
-export default function Draw() {
+export default function DrawTest() {
   const { brushColor, setBrushColor } = useBrushColorStore();
   const { brushSize, setBrushSize } = useBrushSizeStore();
 

@@ -4,7 +4,7 @@
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable simple-import-sort/imports */
 import html2canvas from 'html2canvas';
-import React, { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import FilterBtn from '../../components/Photo/Fliter/FilterBtn';
@@ -43,11 +43,10 @@ export default function FilterPage() {
   }, [filter]);
 
   const captureAndNavigate = async () => {
-    // componentRef의 내용을 캡처합니다
     const canvas = await html2canvas(componentRef.current);
-    // 캔버스 데이터를 데이터 URL로 변환합니다
+
     const dataURL = canvas.toDataURL();
-    // 사용자 정의 페이지로 이동합니다
+
     navigate('/photo/custom', { state: { capturedData: dataURL } });
   };
   return (
@@ -66,7 +65,7 @@ export default function FilterPage() {
           <div className="flex items-center justify-center">
             <div
               ref={componentRef}
-              className="flex items-center justify-center w-[calc(105vh)] relative"
+              className="flex items-center justify-center ml-48 mr-28 relative bg-red-400"
             >
               {stateOne === '2x2_w' && (
                 <Frame4w

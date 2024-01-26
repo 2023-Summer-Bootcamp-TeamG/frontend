@@ -40,7 +40,7 @@ export default function StickerZ({ activeTab }) {
     <div
       className="h-[38rem] w-[40rem] absolute bg-transparent "
       style={{
-        zIndex: activeTab === 1 ? 3 : 1,
+        zIndex: activeTab === 'Stickers' ? 3 : 1,
       }}
     >
       {stickers.map((sticker, index) => (
