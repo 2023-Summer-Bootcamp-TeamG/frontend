@@ -10,7 +10,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import FilterBtn from '../../components/Photo/Fliter/FilterBtn';
 import useImageStore from '../../stores/Background/useImageStore';
 import Frame4w from '../../components/Photo/BasicFrame/Frame4w';
-import Frame4l from '../../components/Photo/BasicFrame/Fream4l';
+import Frame4l from '../../components/Photo/BasicFrame/Frame4l';
 import Frame4long from '../../components/Photo/BasicFrame/Frame4long';
 import Frame2w from '../../components/Photo/BasicFrame/Frame2w';
 import Frame2l from '../../components/Photo/BasicFrame/Frame2l';
