@@ -55,7 +55,7 @@ export default function CustomPage() {
       <div className="flex justify-between">
         <TeamName />
         <div />
-        <div className="flex items-center mr-20 justify-end basis-1/3">
+        <div className="flex items-center justify-end mr-20">
           <img
             src={prev}
             alt="prev"
@@ -75,16 +75,16 @@ export default function CustomPage() {
         </div>
       </div>
 
-      <div className="flex justify-center items-center">
-        <div className="flex justify-center items-center w-[66rem] h-[42rem] pt-20 bg-cover bg-[url('./assets/sketch.png')]">
+      <div className="flex items-center justify-center">
+        <div className="flex w-[66rem] h-[42rem] pt-20 bg-cover bg-[url('./assets/sketch.png')]">
           <div
-            className="h-[25rem] w-[41rem] flex items-center justify-center relative mr-20 "
+            className="flex items-center w-[42rem] justify-center mr-20 "
             ref={contentRef}
           >
             <img
               src={capturedData}
               alt="Captured Content"
-              className="h-full w-full"
+              className="max-w-[30rem] max-h-[30rem]"
             />
             <DrawZ activeTab={select} />
             <StickerZ activeTab={select} />
@@ -96,10 +96,10 @@ export default function CustomPage() {
             imageSrc={capturedImage}
           />
 
-          <div className="flex flex-col items-center">
-            <div className="flex text-gray-400 font-bold text-base">
+          <div className="flex flex-col">
+            <div className="flex justify-center text-base font-bold w-[15rem] mt-2 text-gray-400">
               <div
-                className={`flex flex-col items-center cursor-pointer mr-10 ${
+                className={`flex flex-col items-center cursor-pointer mr-[2rem] ${
                   select === 'Draw' ? 'text-black' : ''
                 }`}
                 onClick={() => {
@@ -110,7 +110,7 @@ export default function CustomPage() {
                 <div>그리기</div>
               </div>
               <div
-                className={`flex flex-col items-center cursor-pointer mr-10 ${
+                className={`flex flex-col items-center cursor-pointer mr-[2rem] ${
                   select === 'Stickers' ? 'text-black' : ''
                 }`}
                 onClick={() => {
@@ -132,9 +132,22 @@ export default function CustomPage() {
                 <div>텍스트</div>
               </div>
             </div>
-            {select === 'Draw' && <Draw />}
-            {select === 'Stickers' && <Stickers />}
-            {select === 'Text' && <Text />}
+            <div className="my-5" />
+            {select === 'Draw' && (
+              <div className="w-[15rem]">
+                <Draw />
+              </div>
+            )}
+            {select === 'Stickers' && (
+              <div className="w-[15rem]">
+                <Stickers />
+              </div>
+            )}
+            {select === 'Text' && (
+              <div className="w-[15rem]">
+                <Text />
+              </div>
+            )}
           </div>
         </div>
       </div>
