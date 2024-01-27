@@ -5,7 +5,7 @@
 /* eslint-disable simple-import-sort/imports */
 import html2canvas from 'html2canvas';
 import { useEffect, useState, useRef } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import FilterBtn from '../../components/Photo/Fliter/FilterBtn';
 import useImageStore from '../../stores/Background/useImageStore';
@@ -20,12 +20,12 @@ import TeamName from '../../components/Common/TeamName';
 import Navbar from '../../components/Common/Navbar';
 
 export default function FilterPage() {
-  const navigate = useNavigate();
   const location = useLocation();
   const { imageUrl } = useImageStore();
   const { filterUrl } = useFilterStore();
   const [filter, setFilter] = useState('');
   const [applyFilter, setApplyFilter] = useState('');
+  const [data, setData] = useState('');
   const onlyFilter = true;
   const stateOne = location.state;
   const componentRef = useRef(null);
@@ -42,30 +42,36 @@ export default function FilterPage() {
     }
   }, [filter]);
 
-  const captureAndNavigate = async () => {
-    const canvas = await html2canvas(componentRef.current);
+  const capture = async () => {
+    // 필터와 배경이 적용된 상태를 확인하고 적용
+    if (filter && applyFilter) {
+      // 필터와 배경이 적용된 상태를 스타일로 설정
+      componentRef.current.style.filter = applyFilter;
+      // 배경 이미지가 필요하다면 해당 스타일도 설정
+      // componentRef.current.style.backgroundImage = `url(${yourBackgroundImageUrl})`;
+    }
 
+    // 이미지 캡처
+    const canvas = await html2canvas(componentRef.current);
     const dataURL = canvas.toDataURL();
 
-    navigate('/photo/custom', { state: { capturedData: dataURL } });
+    // 데이터 저장
+    setData(dataURL);
   };
+
   return (
     <div className="flex flex-col h-screen bg-cover bg-[url('./assets/background.png')]">
       <div className="flex justify-between">
         <TeamName />
         <div />
-        <Navbar
-          pathP="/photo/select"
-          pathN="/photo/custom"
-          stateOne={stateOne}
-        />
+        <Navbar pathP="/photo/select" pathN="/photo/custom" stateOne={data} />
       </div>
-      <div className="flex justify-center items-center">
+      <div className="flex items-center justify-center">
         <div className="flex w-[66rem] h-[42rem] bg-cover bg-[url('./assets/sketch.png')]">
           <div className="flex items-center justify-center">
             <div
               ref={componentRef}
-              className="flex items-center justify-center ml-48 mr-28 relative bg-red-400"
+              className="relative flex items-center justify-center ml-48 bg-red-400 mr-28"
             >
               {stateOne === '2x2_w' && (
                 <Frame4w
@@ -116,24 +122,37 @@ export default function FilterPage() {
                 />
               )}
             </div>
-            <div className="flex flex-col mr-8 items-center justify-center">
-              <div onClick={() => setFilter('원본')}>
+            <div className="flex flex-col items-center justify-center mr-8">
+              <div
+                onClick={() => {
+                  setFilter('원본');
+                  capture();
+                }}
+              >
                 <FilterBtn
                   filterName="원본"
                   filterColor1="bg-light-brown"
                   filterColor2="white"
-                  onClick={() => setFilter('원본')}
                 />
               </div>
-              <div onClick={() => setFilter('어둡게')}>
+              <div
+                onClick={() => {
+                  setFilter('어둡게');
+                  capture();
+                }}
+              >
                 <FilterBtn
                   filterName="어둡게"
                   filterColor1="bg-gray-400"
                   filterColor2="black"
-                  onClick={() => setFilter('어둡게')}
                 />
               </div>
-              <div onClick={() => setFilter('밝은')}>
+              <div
+                onClick={() => {
+                  setFilter('밝은');
+                  capture();
+                }}
+              >
                 <FilterBtn
                   filterName="밝은"
                   filterColor1="bg-yellow-100"
@@ -143,7 +162,7 @@ export default function FilterPage() {
               <div
                 onClick={() => {
                   setFilter('흑백');
-                  captureAndNavigate();
+                  capture();
                 }}
               >
                 <FilterBtn

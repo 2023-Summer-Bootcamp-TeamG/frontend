@@ -34,7 +34,12 @@ export default function Frame2w({
       </div>
       <div className="m-3 bg-white w-[12rem] h-[21.5rem] flex flex-col justify-center items-center">
         {onlySelect && (
-          <ImageOne size={'w-[12rem] h-[21.5rem]'} filterUrl={filterUrl} />
+          <ImageOne
+            size={'w-[12rem] h-[21.5rem]'}
+            filterUrl={filterUrl}
+            // wsize="192"
+            // hsize="344"
+          />
         )}
         {onlyFilter && (
           <img

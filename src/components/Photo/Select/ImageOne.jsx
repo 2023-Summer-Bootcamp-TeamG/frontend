@@ -9,7 +9,7 @@ import Webcam from 'react-webcam';
 import SelectModal from './SelectModal';
 import useFilterStore from '../../../stores/Filter/useFilterStore';
 
-export default function ImageOne({ size }) {
+export default function ImageOne({ size, wsize, hsize }) {
   const [modal1, setModal1] = useState(false);
   const [image1, setImage1] = useState(null);
   const [camera1, setCamera1] = useState(false);
@@ -65,6 +65,7 @@ export default function ImageOne({ size }) {
               ref={webcamRef}
               mirrored
               screenshotFormat="image/jpeg"
+              // style={{ width: `${wsize}px`, height: `${hsize}px` }}
               className={`object-cover ${size}`}
             />
           )
