@@ -9,32 +9,36 @@ import prev from '../../assets/prev.png';
 export default function Navbar({ pathP, pathN, stateOne }) {
   const navigate = useNavigate();
   return (
-    <div className="flex items-center mr-20 justify-end basis-1/3">
-      <img
-        src={prev}
-        alt="prev"
-        className="h-[5rem] w-[6rem] mr-8 cursor-pointer"
-        onClick={() => {
-          navigate(pathP);
-        }}
-      />
-      <img
-        src={next}
-        alt="next"
-        className="h-[5rem] w-[6rem] cursor-pointer"
-        onClick={() => {
-          navigate(pathN, { state: stateOne });
-        }}
-      />
+    <div className="flex items-center justify-end mr-20 basis-1/3">
+      <div className="group">
+        <img
+          src={prev}
+          alt="prev"
+          className="h-[3rem] w-[4rem] mr-8 cursor-pointer transform group-hover:scale-95"
+          onClick={() => {
+            navigate(pathP);
+          }}
+        />
+      </div>
+      <div className="group">
+        <img
+          src={next}
+          alt="next"
+          className="h-[3rem] w-[4rem] cursor-pointer transform group-hover:scale-95"
+          onClick={() => {
+            navigate(pathN, { state: stateOne });
+          }}
+        />
+      </div>
     </div>
   );
 }
 {
   /* <div className="flex items-center h-[7rem]">
-      <div className="basis-1/3 pl-12 pb-20 pt-3">
+      <div className="pt-3 pb-20 pl-12 basis-1/3">
         <Link
           to="/"
-          className=" text-black italic font-black text-3xl tracking-tighter leading-normal  "
+          className="text-3xl italic font-black leading-normal tracking-tighter text-black "
           style={{
             textShadow: '0px 4px 4px rgba(0, 0, 0, 0.5)',
             WebkitTextStroke: '1.6px white',
