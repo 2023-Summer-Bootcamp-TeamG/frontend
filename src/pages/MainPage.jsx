@@ -32,12 +32,12 @@ export default function MainPage() {
             <div className="w-[18rem] h-[14rem] bg-cover bg-[url('./assets/pencil.png')] " />
           </div>
           <Link to="/photo/basicFrame">
-            {/* <div className="fixed ml-[14rem] mt-[1.3rem] group">
-              <div className="w-[10rem] h-[6rem] bg-cover bg-[url('./assets/start.png')] transform group-hover:scale-105" />
-            </div> */}
-            <div className="fixed ml-[14rem] mt-[1.3rem]">
-              <div className="w-[10rem] h-[6rem] bg-cover bg-[url('./assets/start.png')]" />
+            <div className="fixed ml-[14rem] mt-[1.3rem] group">
+              <div className="w-[10rem] h-[6rem] bg-cover bg-[url('./assets/start.png')] transform group-hover:scale-95" />
             </div>
+            {/* <div className="fixed ml-[14rem] mt-[1.3rem]">
+              <div className="w-[10rem] h-[6rem] bg-cover bg-[url('./assets/start.png')]" />
+            </div> */}
           </Link>
         </div>
 
