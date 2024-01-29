@@ -11,7 +11,7 @@ import DrawTest from '../components/Test/sidebar/DrawTest';
 import StickerTest from '../components/Test/sidebar/StickerTest';
 import TextTest from '../components/Test/sidebar/TextTest';
 import Title from '../components/Test/sidebar/Title';
-import ZTestD from '../components/Test/\bZTestD';
+import ZTestD from '../components/Test/ZTestD';
 import ZTestS from '../components/Test/ZTestS';
 
 export default function TestPage() {
