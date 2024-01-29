@@ -9,7 +9,7 @@ import Webcam from 'react-webcam';
 import SelectModal from './SelectModal';
 import useFilterStore from '../../../stores/Filter/useFilterStore';
 
-export default function ImageOne({ size, wsize, hsize }) {
+export default function ImageOne({ size }) {
   const [modal1, setModal1] = useState(false);
   const [image1, setImage1] = useState(null);
   const [camera1, setCamera1] = useState(false);
@@ -38,7 +38,11 @@ export default function ImageOne({ size, wsize, hsize }) {
   const openModal1 = () => {
     setModal1(true);
   };
-
+  useEffect(() => {
+    if (camera1) {
+      setModal1(false);
+    }
+  }, [camera1]);
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === ' ' && !modal1) {
