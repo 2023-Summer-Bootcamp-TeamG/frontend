@@ -23,13 +23,20 @@ export default function FilterPage() {
   const location = useLocation();
   const { imageUrl } = useImageStore();
   const { filterUrl } = useFilterStore();
-  const [filter, setFilter] = useState('');
+  const [filter, setFilter] = useState('원본');
   const [applyFilter, setApplyFilter] = useState('');
   const [data, setData] = useState('');
   const onlyFilter = true;
   const stateOne = location.state;
   const componentRef = useRef(null);
 
+  const capture = async () => {
+    console.log(componentRef);
+    const canvas = await html2canvas(componentRef.current);
+    const dataURL = canvas.toDataURL();
+    // 데이터 저장
+    setData(dataURL);
+  };
   useEffect(() => {
     if (filter === '원본') {
       setApplyFilter('brightness(1.0)');
@@ -42,36 +49,25 @@ export default function FilterPage() {
     }
   }, [filter]);
 
-  const capture = async () => {
-    // 필터와 배경이 적용된 상태를 확인하고 적용
-    if (filter && applyFilter) {
-      // 필터와 배경이 적용된 상태를 스타일로 설정
-      componentRef.current.style.filter = applyFilter;
-      // 배경 이미지가 필요하다면 해당 스타일도 설정
-      // componentRef.current.style.backgroundImage = `url(${yourBackgroundImageUrl})`;
-    }
-
-    // 이미지 캡처
-    const canvas = await html2canvas(componentRef.current);
-    const dataURL = canvas.toDataURL();
-
-    // 데이터 저장
-    setData(dataURL);
-  };
+  useEffect(() => {
+    capture();
+  }, [applyFilter]);
 
   return (
     <div className="flex flex-col h-screen bg-cover bg-[url('./assets/background.png')]">
       <div className="flex justify-between">
         <TeamName />
         <div />
+
         <Navbar pathP="/photo/select" pathN="/photo/custom" stateOne={data} />
       </div>
+      <img src={data} alt="a" />
       <div className="flex items-center justify-center">
         <div className="flex w-[66rem] h-[42rem] bg-cover bg-[url('./assets/sketch.png')]">
           <div className="flex items-center justify-center">
             <div
+              className="relative flex items-center justify-center w-[40rem] m-4 "
               ref={componentRef}
-              className="relative flex items-center justify-center ml-48 bg-red-400 mr-28"
             >
               {stateOne === '2x2_w' && (
                 <Frame4w
@@ -111,6 +107,7 @@ export default function FilterPage() {
                   onlyFilter={onlyFilter}
                   frameUrl={imageUrl}
                   applyFilter={applyFilter}
+                  capture={capture}
                 />
               )}
               {stateOne === '1x1' && (
@@ -122,11 +119,10 @@ export default function FilterPage() {
                 />
               )}
             </div>
-            <div className="flex flex-col items-center justify-center mr-8">
+            <div className="flex flex-col items-center justify-center">
               <div
                 onClick={() => {
                   setFilter('원본');
-                  capture();
                 }}
               >
                 <FilterBtn
@@ -138,7 +134,6 @@ export default function FilterPage() {
               <div
                 onClick={() => {
                   setFilter('어둡게');
-                  capture();
                 }}
               >
                 <FilterBtn
@@ -150,7 +145,6 @@ export default function FilterPage() {
               <div
                 onClick={() => {
                   setFilter('밝은');
-                  capture();
                 }}
               >
                 <FilterBtn
@@ -162,7 +156,6 @@ export default function FilterPage() {
               <div
                 onClick={() => {
                   setFilter('흑백');
-                  capture();
                 }}
               >
                 <FilterBtn
