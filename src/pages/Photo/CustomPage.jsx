@@ -22,7 +22,7 @@ import Text from '../../components/Photo/Custom/Text';
 
 export default function CustomPage() {
   const location = useLocation();
-  const capturedData = location.state?.capturedData;
+  const stateOne = location.state;
 
   const [select, setSelect] = useState('Draw');
 
@@ -82,7 +82,7 @@ export default function CustomPage() {
             ref={contentRef}
           >
             <img
-              src={capturedData}
+              src={stateOne}
               alt="Captured Content"
               className="max-w-[30rem] max-h-[30rem]"
             />
