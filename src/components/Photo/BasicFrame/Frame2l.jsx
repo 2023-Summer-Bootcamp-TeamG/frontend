@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 /* eslint-disable react/jsx-curly-brace-presence */
 /* eslint-disable import/no-unresolved */
-import ImageOne from '../Select/imageOne';
+import ImageOne from '../Select/ImageOne';
 
 export default function Frame2l({
   frameUrl,
