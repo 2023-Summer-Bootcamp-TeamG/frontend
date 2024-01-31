@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable no-promise-executor-return */
 /* eslint-disable consistent-return */
 /* eslint-disable no-constant-condition */
@@ -25,11 +26,15 @@ export default function DetailStickers({ onClose, title }) {
   const addSticker = useStickerStore((state) => state.addSticker);
   const stickers = getImageStickers(title);
   const [myStickers, setMyStickers] = useState([]);
+  const [aiStickers, setAiStickers] = useState([]);
   const [refresh, setRefresh] = useState(1);
+  const [saveSticker, setSaveSticker] = useState(false);
   const [showAIDetails, setShowAIDetails] = useState(false);
   const [showAIList, setShowAIList] = useState(false);
   const [keyword, setKeyword] = useState('');
+  const [t_id, setT_id] = useState('');
   const [loading, setLoading] = useState(false);
+  const [url, setUrl] = useState('');
 
   const getImageSize = (src) => {
     return new Promise((resolve) => {
@@ -97,24 +102,23 @@ export default function DetailStickers({ onClose, title }) {
 
   const data = {
     keyword: keyword,
+    // task_id: task_id,
   };
 
-  const pollForAIResult = async (taskId) => {
+  const pollForAIResult = async (task_id) => {
     try {
+      setLoading(true);
       while (true) {
-        setLoading(true);
-        const response = await apiV1Instance.get(`/stickers/ai/${taskId}`);
-        const statusCode = response.status;
-
-        console.log('AI 결과:', response.data);
-
-        if (statusCode === 202) {
-          await new Promise((resolve) => setTimeout(resolve, 1000));
-        } else if (statusCode === 200) {
+        const response = await apiV1Instance.get(`/stickers/${task_id}`);
+        if (response.data.status === 'SUCCESS') {
+          console.log('task_id : ', task_id);
+          console.log('state : ', response.data.status);
+          console.log('result : ', response.data.result);
+          setT_id(task_id);
           setLoading(false);
-          return response.data;
-        } else {
-          throw new Error(`Failed to fetch URLs. Status code: ${statusCode}`);
+          setSaveSticker(true);
+          setUrl(response.data.result);
+          return;
         }
       }
     } catch (error) {
@@ -123,14 +127,38 @@ export default function DetailStickers({ onClose, title }) {
   };
 
   const handleAISubmit = async () => {
-    console.log('Submitted keyword:', keyword);
     try {
-      const response = await apiV1Instance.post('/stickers/ai', data);
-      const taskId = response.data;
-      pollForAIResult(taskId);
+      const response = await apiV1Instance.post('/stickers/ai/', data);
+      // setTask_id(response.data);
+      console.log('message : ', response.data.message);
+      console.log('task_id : ', response.data.task_id);
+      pollForAIResult(response.data.task_id);
     } catch (error) {
       alert(error);
     }
+  };
+
+  const handleAISave = async () => {
+    try {
+      const response = await apiV1Instance.post('/stickers/ai/save', t_id);
+      console.log('message : ', response.data.message);
+    } catch (error) {
+      alert(error);
+    }
+  };
+
+  const getAiStickers = async () => {
+    try {
+      const response = await apiV1Instance.get('/stickers/ai/');
+      setAiStickers(response.data);
+    } catch (error) {
+      alert(error);
+    }
+  };
+
+  const handleAICancel = () => {
+    setShowAIList(false);
+    setShowAIDetails(false);
   };
 
   const handleInputChange = (event) => {
@@ -139,8 +167,8 @@ export default function DetailStickers({ onClose, title }) {
 
   useEffect(() => {
     getMyStickers();
+    getAiStickers();
   }, [refresh]);
-  // 백에서 시간 단축 시켜준다 함. 굳이 롱폴링 안 해도 될듯. 시간 단축이 얼마나 되느냐에 따라 달라지겠지만
 
   return (
     <div className="bg-white mt-4 p-6 h-[30rem] w-[19rem] rounded-xl border-black border shadow-[0_4px_12.3px_0px_rgba(0,0,0,0.3)]">
@@ -220,8 +248,7 @@ export default function DetailStickers({ onClose, title }) {
           ) : (
             showAIList && (
               <div className="grid grid-cols-4 m-4">
-                <Lottie animationData={Loading} loop />
-                {myStickers.map((image, index) => (
+                {aiStickers.map((image, index) => (
                   <img
                     className="m-2 cursor-pointer"
                     key={index}
@@ -252,8 +279,34 @@ export default function DetailStickers({ onClose, title }) {
             </div>
           )}
           {loading && (
-            <div>
-              <Lottie animationData={Loading} loop={false} />
+            <div className="flex items-center justify-center">
+              <Lottie animationData={Loading} loop />
+            </div>
+          )}
+          {saveSticker && (
+            <div className="flex flex-col justify-center">
+              <div className="w-[15rem] h-[15rem] flex justify-center items-center">
+                <img
+                  src={url}
+                  alt="aiSticker"
+                  className="w-[12rem] h-[12rem]"
+                />
+              </div>
+              <div className="flex items-center justify-center">
+                <button
+                  onClick={handleAISave}
+                  className="p-2 text-white w-[5rem] bg-gray-400 rounded-md cursor-pointer"
+                >
+                  저장
+                </button>
+                <div className="mx-4" />
+                <button
+                  onClick={handleAICancel}
+                  className="p-2 text-white w-[5rem] bg-gray-400 rounded-md cursor-pointer"
+                >
+                  취소
+                </button>
+              </div>
             </div>
           )}
         </div>
@@ -261,22 +314,3 @@ export default function DetailStickers({ onClose, title }) {
     </div>
   );
 }
-
-// export const getImages = async (taskId: string) => {
-//   try {
-//     while (true) {
-//       const response = await baseInstance.get(`/characters/urls/${taskId}`);
-//       const statusCode = response.status;
-
-//       if (statusCode === 202) {
-//         await new Promise((resolve) => setTimeout(resolve, 1000));
-//       } else if (statusCode === 200) {
-//         return response.data;
-//       } else {
-//         throw new Error(`Failed to fetch URLs. Status code: ${statusCode}`);
-//       }
-//     }
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
