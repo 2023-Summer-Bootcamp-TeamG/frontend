@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable object-shorthand */
 /* eslint-disable prettier/prettier */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
@@ -6,7 +7,7 @@
 /* eslint-disable simple-import-sort/imports */
 import html2canvas from 'html2canvas';
 import { useEffect, useState, useRef } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import FilterBtn from '../../components/Photo/Fliter/FilterBtn';
 import useImageStore from '../../stores/Background/useImageStore';
@@ -18,7 +19,9 @@ import Frame2l from '../../components/Photo/BasicFrame/Frame2l';
 import Frame1 from '../../components/Photo/BasicFrame/Frame1';
 import useFilterStore from '../../stores/Filter/useFilterStore';
 import TeamName from '../../components/Common/TeamName';
-import Navbar from '../../components/Common/Navbar';
+// import Navbar from '../../components/Common/Navbar';
+import next from '../../assets/next.png';
+import prev from '../../assets/prev.png';
 
 export default function FilterPage() {
   const location = useLocation();
@@ -30,6 +33,7 @@ export default function FilterPage() {
   const onlyFilter = true;
   const stateOne = location.state;
   const componentRef = useRef(null);
+  const navigate = useNavigate();
 
   const capture = async () => {
     console.log(componentRef);
@@ -50,7 +54,6 @@ export default function FilterPage() {
     }
   }, [filter]);
 
-
   const captureAndNavigate = async () => {
     const canvas = await html2canvas(componentRef.current);
     const width = componentRef.current.offsetWidth;
@@ -65,21 +68,36 @@ export default function FilterPage() {
     });
   };
 
-
   useEffect(() => {
     capture();
   }, [applyFilter]);
-
 
   return (
     <div className="flex flex-col h-screen bg-cover bg-[url('./assets/background.png')]">
       <div className="flex justify-between">
         <TeamName />
-        <div />
 
-        <Navbar pathP="/photo/select" pathN="/photo/custom" stateOne={data} />
+        {/* <Navbar pathP="/photo/select" pathN="/photo/custom" stateOne={data} /> */}
+        <div className="flex items-center mr-20 justify-end basis-1/3">
+          <img
+            src={prev}
+            alt="prev"
+            className="h-[5rem] w-[6rem] mr-8 cursor-pointer"
+            onClick={() => {
+              navigate('/photo/select');
+            }}
+          />
+          <img
+            src={next}
+            alt="next"
+            className="h-[5rem] w-[6rem] cursor-pointer"
+            onClick={() => {
+              captureAndNavigate();
+            }}
+          />
+        </div>
       </div>
-      <img src={data} alt="a" />
+      {/* <img src={data} alt="a" /> */}
       <div className="flex items-center justify-center">
         <div className="flex w-[66rem] h-[42rem] bg-cover bg-[url('./assets/sketch.png')]">
           <div className="flex items-center justify-center">

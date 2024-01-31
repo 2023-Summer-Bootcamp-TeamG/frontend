@@ -21,25 +21,7 @@ export default function Stickers() {
           <div className="grid grid-cols-3 ">
             <Icon
               icon="😀"
-              title="기본티콘"
-              setOpen={setStickersModalOpen}
-              setTitle={setTitle}
-            />
-            <Icon
-              icon="👾"
-              title="픽셀티콘"
-              setOpen={setStickersModalOpen}
-              setTitle={setTitle}
-            />
-            <Icon
-              icon="✨"
-              title="기호"
-              setOpen={setStickersModalOpen}
-              setTitle={setTitle}
-            />
-            <Icon
-              icon="🧸"
-              title="캐릭터"
+              title="이모티콘"
               setOpen={setStickersModalOpen}
               setTitle={setTitle}
             />

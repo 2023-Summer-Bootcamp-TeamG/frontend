@@ -25,6 +25,7 @@ import Lottie from 'lottie-react';
 export default function DetailStickers({ onClose, title }) {
   const addSticker = useStickerStore((state) => state.addSticker);
   const stickers = getImageStickers(title);
+  const [basicStickers, setBasicStickers] = useState([]);
   const [myStickers, setMyStickers] = useState([]);
   const [aiStickers, setAiStickers] = useState([]);
   const [refresh, setRefresh] = useState(1);
@@ -36,11 +37,12 @@ export default function DetailStickers({ onClose, title }) {
   const [loading, setLoading] = useState(false);
   const [url, setUrl] = useState('');
 
+  // 이미지 사이즈
   const getImageSize = (src) => {
     return new Promise((resolve) => {
       const img = new Image();
       img.onload = () => {
-        resolve({ width: img.width, height: img.height });
+        resolve({ width: 100, height: 100 });
       };
       img.src = src;
     });
@@ -56,6 +58,15 @@ export default function DetailStickers({ onClose, title }) {
       });
     } catch (error) {
       console.error('Error getting image size:', error);
+    }
+  };
+  const getBasicStickers = async () => {
+    try {
+      const response = await apiV1Instance.get('/stickers/basic');
+      console.log(response.data);
+      setBasicStickers(response.data);
+    } catch (error) {
+      alert(error);
     }
   };
 
@@ -172,6 +183,7 @@ export default function DetailStickers({ onClose, title }) {
   };
 
   useEffect(() => {
+    getBasicStickers();
     getMyStickers();
     getAiStickers();
   }, [refresh]);
@@ -222,13 +234,13 @@ export default function DetailStickers({ onClose, title }) {
         </div>
       ) : (
         <div className="grid grid-cols-4 m-4">
-          {stickers.map((image, index) => (
+          {basicStickers.map((image, index) => (
             <img
               className="m-2 cursor-pointer"
               key={index}
-              src={image}
+              src={image.image}
               alt={`Sticker ${index + 1}`}
-              onClick={() => handleStickerClick(image)}
+              onClick={() => handleStickerClick(image.image)}
             />
           ))}
         </div>

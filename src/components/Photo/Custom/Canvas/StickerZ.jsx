@@ -19,7 +19,7 @@ export default function StickerZ({ activeTab, width, height }) {
   const removeSticker = useStickerStore((state) => state.removeSticker);
 
   const handleDrag = (e, data, index) => {
-    updateSticker(index, { position: { y: data.y, x: data.x } });
+    updateSticker(index, { position: { x: data.x, y: data.y } });
   };
 
   const handleResizeStop = (index, e, direction, ref, delta, position) => {

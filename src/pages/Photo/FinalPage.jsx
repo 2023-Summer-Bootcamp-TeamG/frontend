@@ -27,7 +27,7 @@ export default function FinalPage() {
       photo_data: image,
       result_photo_data: image,
       stickers: stickers,
-      textboxex: texts,
+      textboxes: texts,
       drawings: drawings,
     };
     try {
