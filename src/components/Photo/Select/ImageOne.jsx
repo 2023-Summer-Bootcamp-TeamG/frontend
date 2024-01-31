@@ -38,7 +38,11 @@ export default function ImageOne({ size }) {
   const openModal1 = () => {
     setModal1(true);
   };
-
+  useEffect(() => {
+    if (camera1) {
+      setModal1(false);
+    }
+  }, [camera1]);
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === ' ' && !modal1) {
@@ -65,6 +69,7 @@ export default function ImageOne({ size }) {
               ref={webcamRef}
               mirrored
               screenshotFormat="image/jpeg"
+              // style={{ width: `${wsize}px`, height: `${hsize}px` }}
               className={`object-cover ${size}`}
             />
           )

@@ -1,3 +1,4 @@
+/* eslint-disable react/button-has-type */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useEffect, useState } from 'react';
@@ -33,21 +34,31 @@ export default function AlbumPage() {
   return (
     <div className="flex flex-col items-center h-screen bg-cover bg-[url('./assets/background.png')]">
       <TeamName />
-      {/* 그리드 컨테이너 */}
-      <div className="bg-white w-[73rem] h-[43rem] mt-6  rounded-xl px-10">
-        <div className="grid grid-cols-4 gap-4 p-4 w-full max-w-6xl">
-          {images.map((image) => (
-            <div
-              key={image.id}
-              className="bg-white p-3 cursor-pointer"
-              onClick={() => openModal(image)}
-            >
-              <img
-                src={image.url}
-                alt={image.title}
-                className="w-full h-auto"
-              />
-              <p className="text-center mt-2">{image.title}</p>
+      <div className="w-[73rem] h-[43rem] mt-6 px-10">
+        <div className="grid grid-cols-3 gap-6">
+          {images.map((image, index) => (
+            <div key={image.id} className="relative">
+              <div className="flex items-center justify-center">
+                <div
+                  className="absolute top-0 left-1/2 w-[2rem] h-[5rem] bg-cover"
+                  style={{
+                    backgroundImage: `url(/assets/album/tape${
+                      (index % 4) + 1
+                    }.png')`,
+                  }}
+                />
+              </div>
+              <div
+                className="flex flex-col justify-start mt-[3rem] items-center max-h-[22rem] max-w-[22rem] cursor-pointer"
+                onClick={() => openModal(image)}
+              >
+                <img
+                  src={image.url}
+                  alt={image.title}
+                  className="max-w-[20rem] max-h-[20rem]"
+                />
+                {/* <p className="mt-2 text-center">{image.title}</p> */}
+              </div>
             </div>
           ))}
         </div>
@@ -55,7 +66,24 @@ export default function AlbumPage() {
 
       {/* 모달 구현 */}
       {modal && selectedImage && (
-        <div className="modal">{/* 모달의 내용 구현 */}</div>
+        <div className="fixed top-0 left-0 flex items-center justify-center w-full h-full bg-gray-800 bg-opacity-75">
+          <div className="bg-white p-4 max-w-[50rem] max-h-[50rem] overflow-y-auto">
+            <img
+              src={selectedImage.url}
+              alt={selectedImage.title}
+              className="max-w-[40rem] max-h-[40rem] mb-2"
+            />
+            <p className="mb-2 text-xl font-bold">{selectedImage.title}</p>
+            <div className="flex justify-end">
+              <button
+                onClick={() => setModal(false)}
+                className="px-4 py-2 text-white bg-blue-500 rounded-md "
+              >
+                닫기
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
