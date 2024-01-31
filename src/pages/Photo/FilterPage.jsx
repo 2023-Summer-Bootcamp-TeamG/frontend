@@ -1,30 +1,174 @@
-import frame from '../../assets/frame/2x2_w.png';
-import ProgressFooter from '../../components/Common/ProgressFooter';
-import TeamName from '../../components/Common/TeamName';
+/* eslint-disable prettier/prettier */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable react/self-closing-comp */
+/* eslint-disable simple-import-sort/imports */
+import html2canvas from 'html2canvas';
+import { useEffect, useState, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
+
 import FilterBtn from '../../components/Photo/Fliter/FilterBtn';
+import useImageStore from '../../stores/Background/useImageStore';
+import Frame4w from '../../components/Photo/BasicFrame/Frame4w';
+import Frame4l from '../../components/Photo/BasicFrame/Frame4l';
+import Frame4long from '../../components/Photo/BasicFrame/Frame4long';
+import Frame2w from '../../components/Photo/BasicFrame/Frame2w';
+import Frame2l from '../../components/Photo/BasicFrame/Frame2l';
+import Frame1 from '../../components/Photo/BasicFrame/Frame1';
+import useFilterStore from '../../stores/Filter/useFilterStore';
+import TeamName from '../../components/Common/TeamName';
+import Navbar from '../../components/Common/Navbar';
 
 export default function FilterPage() {
+  const location = useLocation();
+  const { imageUrl } = useImageStore();
+  const { filterUrl } = useFilterStore();
+  const [filter, setFilter] = useState('원본');
+  const [applyFilter, setApplyFilter] = useState('');
+  const [data, setData] = useState('');
+  const onlyFilter = true;
+  const stateOne = location.state;
+  const componentRef = useRef(null);
+
+  const capture = async () => {
+    console.log(componentRef);
+    const canvas = await html2canvas(componentRef.current);
+    const dataURL = canvas.toDataURL();
+    // 데이터 저장
+    setData(dataURL);
+  };
+  useEffect(() => {
+    if (filter === '원본') {
+      setApplyFilter('brightness(1.0)');
+    } else if (filter === '밝은') {
+      setApplyFilter('brightness(1.2)');
+    } else if (filter === '어둡게') {
+      setApplyFilter('brightness(0.8)');
+    } else if (filter === '흑백') {
+      setApplyFilter('grayscale(100%)');
+    }
+  }, [filter]);
+
+  useEffect(() => {
+    capture();
+  }, [applyFilter]);
+
   return (
-    <div className="h-screen">
-      <div>
+    <div className="flex flex-col h-screen bg-cover bg-[url('./assets/background.png')]">
+      <div className="flex justify-between">
         <TeamName />
+        <div />
+
+        <Navbar pathP="/photo/select" pathN="/photo/custom" stateOne={data} />
       </div>
-      <div className="flex ">
-        <img src={frame} alt="frame" className="mt-16 ml-56 w-2/5" />
-        <div className="mt-28">
-          <FilterBtn
-            filterName="원본"
-            filterColor1="bg-light-brown"
-            filterColor2="white"
-          />
-          <FilterBtn
-            filterName="밝은"
-            filterColor1="bg-white"
-            filterColor2="black"
-          />
+      <img src={data} alt="a" />
+      <div className="flex items-center justify-center">
+        <div className="flex w-[66rem] h-[42rem] bg-cover bg-[url('./assets/sketch.png')]">
+          <div className="flex items-center justify-center">
+            <div
+              className="relative flex items-center justify-center w-[40rem] m-4 "
+              ref={componentRef}
+            >
+              {stateOne === '2x2_w' && (
+                <Frame4w
+                  filterUrl={filterUrl}
+                  onlyFilter={onlyFilter}
+                  frameUrl={imageUrl}
+                  applyFilter={applyFilter}
+                />
+              )}
+              {stateOne === '2x2_l' && (
+                <Frame4l
+                  filterUrl={filterUrl}
+                  onlyFilter={onlyFilter}
+                  frameUrl={imageUrl}
+                  applyFilter={applyFilter}
+                />
+              )}
+              {stateOne === '4x1' && (
+                <Frame4long
+                  filterUrl={filterUrl}
+                  onlyFilter={onlyFilter}
+                  frameUrl={imageUrl}
+                  applyFilter={applyFilter}
+                />
+              )}
+              {stateOne === '2x1_w' && (
+                <Frame2w
+                  filterUrl={filterUrl}
+                  onlyFilter={onlyFilter}
+                  frameUrl={imageUrl}
+                  applyFilter={applyFilter}
+                />
+              )}
+              {stateOne === '2x1_l' && (
+                <Frame2l
+                  filterUrl={filterUrl}
+                  onlyFilter={onlyFilter}
+                  frameUrl={imageUrl}
+                  applyFilter={applyFilter}
+                  capture={capture}
+                />
+              )}
+              {stateOne === '1x1' && (
+                <Frame1
+                  filterUrl={filterUrl}
+                  onlyFilter={onlyFilter}
+                  frameUrl={imageUrl}
+                  applyFilter={applyFilter}
+                />
+              )}
+            </div>
+            <div className="flex flex-col items-center justify-center">
+              <div
+                onClick={() => {
+                  setFilter('원본');
+                }}
+              >
+                <FilterBtn
+                  filterName="원본"
+                  filterColor1="bg-light-brown"
+                  filterColor2="white"
+                />
+              </div>
+              <div
+                onClick={() => {
+                  setFilter('어둡게');
+                }}
+              >
+                <FilterBtn
+                  filterName="어둡게"
+                  filterColor1="bg-gray-400"
+                  filterColor2="black"
+                />
+              </div>
+              <div
+                onClick={() => {
+                  setFilter('밝은');
+                }}
+              >
+                <FilterBtn
+                  filterName="밝은"
+                  filterColor1="bg-yellow-100"
+                  filterColor2="black"
+                />
+              </div>
+              <div
+                onClick={() => {
+                  setFilter('흑백');
+                }}
+              >
+                <FilterBtn
+                  filterName="흑백"
+                  filterColor1="bg-gray-200"
+                  filterColor2="black"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <ProgressFooter width="w-[32.2rem]" path="/custom" />
+      <div className="m-1" />
     </div>
   );
 }

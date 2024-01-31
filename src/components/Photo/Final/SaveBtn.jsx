@@ -4,11 +4,12 @@ import { MdDownload } from 'react-icons/md';
 
 import finish from '../../../assets/Lottie/finish/Animation - 1704995244519.json';
 
-export default function SaveBtn({ title }) {
+export default function SaveBtn({ title, clickSaveBtn }) {
   const [isClicked, setIsClicked] = useState(false);
 
   const handleButtonClick = () => {
     setIsClicked(true);
+    clickSaveBtn();
   };
 
   return (

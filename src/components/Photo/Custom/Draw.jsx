@@ -18,11 +18,11 @@ export default function Draw() {
   };
 
   return (
-    <div className="bg-white mt-4 p-4 h-[30rem] w-[19rem] rounded-xl border-black border shadow-[0_4px_12.3px_0px_rgba(0,0,0,0.3)]">
+    <div className="">
       <SketchPicker
         color={brushColor}
         onChange={handleColorChange}
-        width="16rem"
+        width="14rem"
       />
       <div className="mt-5">
         <div className="my-2">🖌️ Brush Size : {brushSize}</div>
@@ -35,11 +35,6 @@ export default function Draw() {
           className="w-full"
           style={{ accentColor: `${brushColor}` }}
         />
-      </div>
-      <div className="text-sm mt-2">
-        {' '}
-        * 그림을 그리고 <span className="font-bold text-red-600">Save</span>를
-        눌러주세요!
       </div>
     </div>
   );

@@ -24,7 +24,7 @@ export default function TextZ({ activeTab }) {
     <div
       className="h-[38rem] w-[40rem] absolute bg-transparent "
       style={{
-        zIndex: activeTab === 2 ? 3 : 1,
+        zIndex: activeTab === 'Text' ? 3 : 1,
       }}
     >
       {texts.map((text, index) => (

@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+/* eslint-disable react/button-has-type */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import { useEffect, useState } from 'react';
 
 import apiV1Instance from '../../api/api-instance';
-import AlbumBtn from '../../components/Album/AlbumBtn';
-import Modal from '../../components/Album/Modal';
-import Header from '../../components/Common/Header';
+import TeamName from '../../components/Common/TeamName';
 
 export default function AlbumPage() {
   const [modal, setModal] = useState(false);
@@ -15,6 +16,7 @@ export default function AlbumPage() {
       const response = await apiV1Instance.get('/photos/');
       // 이미지 정보들을 images 상태에 저장
       setImages(response.data);
+      console.log(images);
     } catch (error) {
       alert(error);
     }
@@ -30,31 +32,58 @@ export default function AlbumPage() {
   };
 
   return (
-    <div>
-      <div>
-        <Header />
+    <div className="flex flex-col items-center h-screen bg-cover bg-[url('./assets/background.png')]">
+      <TeamName />
+      <div className="w-[73rem] h-[43rem] mt-6 px-10">
+        <div className="grid grid-cols-3 gap-6">
+          {images.map((image, index) => (
+            <div key={image.id} className="relative">
+              <div className="flex items-center justify-center">
+                <div
+                  className="absolute top-0 left-1/2 w-[2rem] h-[5rem] bg-cover"
+                  style={{
+                    backgroundImage: `url(/assets/album/tape${
+                      (index % 4) + 1
+                    }.png')`,
+                  }}
+                />
+              </div>
+              <div
+                className="flex flex-col justify-start mt-[3rem] items-center max-h-[22rem] max-w-[22rem] cursor-pointer"
+                onClick={() => openModal(image)}
+              >
+                <img
+                  src={image.url}
+                  alt={image.title}
+                  className="max-w-[20rem] max-h-[20rem]"
+                />
+                {/* <p className="mt-2 text-center">{image.title}</p> */}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
-      {images && images.length > 0 && (
-        <div className="flex justify-center">
-          <div className="grid grid-cols-4">
-            {images.map((image, index) => (
-              <AlbumBtn
-                key={index}
-                setModal={() => openModal(image)}
-                imageUrl={image.url}
-                title={image.title}
-              />
-            ))}
+
+      {/* 모달 구현 */}
+      {modal && selectedImage && (
+        <div className="fixed top-0 left-0 flex items-center justify-center w-full h-full bg-gray-800 bg-opacity-75">
+          <div className="bg-white p-4 max-w-[50rem] max-h-[50rem] overflow-y-auto">
+            <img
+              src={selectedImage.url}
+              alt={selectedImage.title}
+              className="max-w-[40rem] max-h-[40rem] mb-2"
+            />
+            <p className="mb-2 text-xl font-bold">{selectedImage.title}</p>
+            <div className="flex justify-end">
+              <button
+                onClick={() => setModal(false)}
+                className="px-4 py-2 text-white bg-blue-500 rounded-md "
+              >
+                닫기
+              </button>
+            </div>
           </div>
         </div>
-      )}
-      {modal && selectedImage && (
-        <Modal
-          setModal={() => setModal(false)}
-          imageUrl={selectedImage.url}
-          title={selectedImage.title}
-          id={selectedImage.id}
-        />
       )}
     </div>
   );
