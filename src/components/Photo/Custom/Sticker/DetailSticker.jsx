@@ -52,7 +52,7 @@ export default function DetailStickers({ onClose, title }) {
       addSticker({
         image,
         position: { top: 100, left: 100 },
-        size,
+        size: { width: 150, height: 150 },
       });
     } catch (error) {
       console.error('Error getting image size:', error);
@@ -140,8 +140,13 @@ export default function DetailStickers({ onClose, title }) {
 
   const handleAISave = async () => {
     try {
-      const response = await apiV1Instance.post('/stickers/ai/save', t_id);
+      const response = await apiV1Instance.post('/stickers/ai/save', {
+        task_id: t_id,
+      });
       console.log('message : ', response.data.message);
+      setShowAIList(false);
+      setShowAIDetails(false);
+      setSaveSticker(false);
     } catch (error) {
       alert(error);
     }
@@ -159,6 +164,7 @@ export default function DetailStickers({ onClose, title }) {
   const handleAICancel = () => {
     setShowAIList(false);
     setShowAIDetails(false);
+    setSaveSticker(false);
   };
 
   const handleInputChange = (event) => {
@@ -227,6 +233,7 @@ export default function DetailStickers({ onClose, title }) {
           ))}
         </div>
       )}
+
       {title === 'AI 스티커' && (
         <div className="flex flex-col items-center justify-center">
           {showAIDetails ? (
@@ -280,6 +287,7 @@ export default function DetailStickers({ onClose, title }) {
           )}
           {loading && (
             <div className="flex items-center justify-center">
+              <div className="my-[8rem]" />
               <Lottie animationData={Loading} loop />
             </div>
           )}
@@ -295,14 +303,14 @@ export default function DetailStickers({ onClose, title }) {
               <div className="flex items-center justify-center">
                 <button
                   onClick={handleAISave}
-                  className="p-2 text-white w-[5rem] bg-gray-400 rounded-md cursor-pointer"
+                  className="p-2 text-white w-[5rem] bg-blue-500 rounded-md cursor-pointer"
                 >
                   저장
                 </button>
                 <div className="mx-4" />
                 <button
                   onClick={handleAICancel}
-                  className="p-2 text-white w-[5rem] bg-gray-400 rounded-md cursor-pointer"
+                  className="p-2 text-white w-[5rem] bg-blue-500 rounded-md cursor-pointer"
                 >
                   취소
                 </button>
