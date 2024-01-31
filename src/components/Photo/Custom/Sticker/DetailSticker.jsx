@@ -189,7 +189,7 @@ export default function DetailStickers({ onClose, title }) {
   }, [refresh]);
 
   return (
-    <div className="bg-white mt-4 p-6 h-[30rem] w-[19rem] rounded-xl border-black border shadow-[0_4px_12.3px_0px_rgba(0,0,0,0.3)]">
+    <div className="">
       <div className="flex items-center m-1 text-lg font-bold">
         <MdOutlineArrowBackIosNew
           onClick={onClose}
