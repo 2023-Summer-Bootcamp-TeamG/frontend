@@ -22,9 +22,18 @@ export default function AlbumPage() {
     }
   };
 
+  const handleDel = async (id) => {
+    try {
+      const response = await apiV1Instance.delete(`/photos/${id}`);
+      setModal(false);
+    } catch (error) {
+      alert(error);
+    }
+  };
+
   useEffect(() => {
     getAllImages();
-  }, []);
+  }, [images]);
 
   const openModal = (image) => {
     setSelectedImage(image);
@@ -74,7 +83,18 @@ export default function AlbumPage() {
               className="max-w-[40rem] max-h-[40rem] mb-2"
             />
             <p className="mb-2 text-xl font-bold">{selectedImage.title}</p>
-            <div className="flex justify-end">
+            <div className="flex justify-center">
+              <button className="px-4 py-2 text-white bg-blue-500 rounded-md ">
+                수정
+              </button>
+              <div className="px-8" />
+              <button
+                onClick={() => handleDel(selectedImage.origin)}
+                className="px-4 py-2 text-white bg-blue-500 rounded-md "
+              >
+                삭제
+              </button>
+              <div className="px-8" />
               <button
                 onClick={() => setModal(false)}
                 className="px-4 py-2 text-white bg-blue-500 rounded-md "
