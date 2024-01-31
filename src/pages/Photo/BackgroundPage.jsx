@@ -27,11 +27,7 @@ export default function BackgroundPage() {
       <div className="flex justify-between">
         <TeamName />
         <div />
-        <Navbar
-          pathP="/photo/basicFrame"
-          pathN="/photo/select"
-          stateOne={stateOne}
-        />
+        <Navbar pathN="/photo/select" stateOne={stateOne} />
       </div>
       <div className="flex justify-center items-center">
         <div className="flex w-[66rem] h-[42rem] bg-cover bg-[url('./assets/sketch.png')]">

@@ -21,7 +21,6 @@ import useFilterStore from '../../stores/Filter/useFilterStore';
 import TeamName from '../../components/Common/TeamName';
 // import Navbar from '../../components/Common/Navbar';
 import next from '../../assets/next.png';
-import prev from '../../assets/prev.png';
 
 export default function FilterPage() {
   const location = useLocation();
@@ -79,14 +78,6 @@ export default function FilterPage() {
 
         {/* <Navbar pathP="/photo/select" pathN="/photo/custom" stateOne={data} /> */}
         <div className="flex items-center mr-20 justify-end basis-1/3">
-          <img
-            src={prev}
-            alt="prev"
-            className="h-[5rem] w-[6rem] mr-8 cursor-pointer"
-            onClick={() => {
-              navigate('/photo/select');
-            }}
-          />
           <img
             src={next}
             alt="next"
