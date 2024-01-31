@@ -47,10 +47,10 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="bg-[url('./assets/images/pixel1.png')] h-screen w-screen bg-contain flex justify-center items-center ">
+    <div className="bg-[url('./assets/background.png')] h-screen w-screen bg-cover flex justify-center items-center ">
       <div className="border-4 bg-white rounded-lg border-black flex flex-col justify-center items-center w-[32rem]">
-        <Link to="/" className="mt-8 text-5xl italic font-black mb-9">
-          DoodleFilm
+        <Link to="/" className="mt-6 mb-8 text-5xl italic font-black">
+          <div className="bg-[url('./assets/logo.png')] w-[19rem] h-[4.5rem] bg-cover" />
         </Link>
         <InputBox
           title="닉네임"
