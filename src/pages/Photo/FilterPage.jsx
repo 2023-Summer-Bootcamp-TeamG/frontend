@@ -1,3 +1,4 @@
+/* eslint-disable object-shorthand */
 /* eslint-disable prettier/prettier */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
@@ -44,11 +45,18 @@ export default function FilterPage() {
 
   const captureAndNavigate = async () => {
     const canvas = await html2canvas(componentRef.current);
+    const width = componentRef.current.offsetWidth;
+    const height = componentRef.current.offsetHeight;
+    console.log('width : ', componentRef.current.offsetWidth);
+    console.log('height : ', componentRef.current.offsetHeight);
 
     const dataURL = canvas.toDataURL();
 
-    navigate('/photo/custom', { state: { capturedData: dataURL } });
+    navigate('/photo/custom', {
+      state: { capturedData: dataURL, width: width, height: height },
+    });
   };
+
   return (
     <div className="flex flex-col h-screen bg-cover bg-[url('./assets/background.png')]">
       <div className="flex justify-between">
@@ -63,59 +71,69 @@ export default function FilterPage() {
       <div className="flex justify-center items-center">
         <div className="flex w-[66rem] h-[42rem] bg-cover bg-[url('./assets/sketch.png')]">
           <div className="flex items-center justify-center">
-            <div
-              ref={componentRef}
-              className="flex items-center justify-center ml-48 mr-28 relative bg-red-400"
-            >
+            <div className="flex items-center justify-center ml-48 mr-28 relative">
               {stateOne === '2x2_w' && (
-                <Frame4w
-                  filterUrl={filterUrl}
-                  onlyFilter={onlyFilter}
-                  frameUrl={imageUrl}
-                  applyFilter={applyFilter}
-                />
+                <div ref={componentRef}>
+                  <Frame4w
+                    filterUrl={filterUrl}
+                    onlyFilter={onlyFilter}
+                    frameUrl={imageUrl}
+                    applyFilter={applyFilter}
+                  />
+                </div>
               )}
               {stateOne === '2x2_l' && (
-                <Frame4l
-                  filterUrl={filterUrl}
-                  onlyFilter={onlyFilter}
-                  frameUrl={imageUrl}
-                  applyFilter={applyFilter}
-                />
+                <div ref={componentRef}>
+                  <Frame4l
+                    filterUrl={filterUrl}
+                    onlyFilter={onlyFilter}
+                    frameUrl={imageUrl}
+                    applyFilter={applyFilter}
+                  />
+                </div>
               )}
               {stateOne === '4x1' && (
-                <Frame4long
-                  filterUrl={filterUrl}
-                  onlyFilter={onlyFilter}
-                  frameUrl={imageUrl}
-                  applyFilter={applyFilter}
-                />
+                <div ref={componentRef}>
+                  <Frame4long
+                    filterUrl={filterUrl}
+                    onlyFilter={onlyFilter}
+                    frameUrl={imageUrl}
+                    applyFilter={applyFilter}
+                  />
+                </div>
               )}
               {stateOne === '2x1_w' && (
-                <Frame2w
-                  filterUrl={filterUrl}
-                  onlyFilter={onlyFilter}
-                  frameUrl={imageUrl}
-                  applyFilter={applyFilter}
-                />
+                <div ref={componentRef}>
+                  <Frame2w
+                    filterUrl={filterUrl}
+                    onlyFilter={onlyFilter}
+                    frameUrl={imageUrl}
+                    applyFilter={applyFilter}
+                  />
+                </div>
               )}
               {stateOne === '2x1_l' && (
-                <Frame2l
-                  filterUrl={filterUrl}
-                  onlyFilter={onlyFilter}
-                  frameUrl={imageUrl}
-                  applyFilter={applyFilter}
-                />
+                <div ref={componentRef}>
+                  <Frame2l
+                    filterUrl={filterUrl}
+                    onlyFilter={onlyFilter}
+                    frameUrl={imageUrl}
+                    applyFilter={applyFilter}
+                  />
+                </div>
               )}
               {stateOne === '1x1' && (
-                <Frame1
-                  filterUrl={filterUrl}
-                  onlyFilter={onlyFilter}
-                  frameUrl={imageUrl}
-                  applyFilter={applyFilter}
-                />
+                <div ref={componentRef}>
+                  <Frame1
+                    filterUrl={filterUrl}
+                    onlyFilter={onlyFilter}
+                    frameUrl={imageUrl}
+                    applyFilter={applyFilter}
+                  />
+                </div>
               )}
             </div>
+
             <div className="flex flex-col mr-8 items-center justify-center">
               <div onClick={() => setFilter('원본')}>
                 <FilterBtn

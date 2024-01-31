@@ -4,7 +4,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 
 import html2canvas from 'html2canvas';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { MdDraw, MdOutlineEmojiEmotions } from 'react-icons/md';
 import { PiTextTBold } from 'react-icons/pi';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -19,10 +19,13 @@ import CustomModal from '../../components/Photo/Custom/CustomModal';
 import Draw from '../../components/Photo/Custom/Draw';
 import Stickers from '../../components/Photo/Custom/Stickers';
 import Text from '../../components/Photo/Custom/Text';
+import { FabricCanvasContext } from '../../utils/FabricCanvasContext';
 
 export default function CustomPage() {
   const location = useLocation();
-  const capturedData = location.state?.capturedData;
+  const { capturedData, width, height } = location.state;
+
+  const fabricCanvasRef = useRef(null);
 
   const [select, setSelect] = useState('Draw');
 
@@ -50,107 +53,124 @@ export default function CustomPage() {
     }
   };
 
+  useEffect(() => {
+    console.log('width : ', width);
+    console.log('height : ', height);
+  }, []);
+
   return (
-    <div className="flex flex-col h-screen bg-cover bg-[url('./assets/background.png')]">
-      <div className="flex justify-between">
-        <TeamName />
-        <div />
-        <div className="flex items-center justify-end mr-20">
-          <img
-            src={prev}
-            alt="prev"
-            className="h-[5rem] w-[6rem] mr-8 cursor-pointer"
-            onClick={() => {
-              navigate('/photo/filter');
-            }}
-          />
-          <img
-            src={next}
-            alt="next"
-            className="h-[5rem] w-[6rem] cursor-pointer"
-            onClick={() => {
-              handleNextClick();
-            }}
-          />
-        </div>
-      </div>
-
-      <div className="flex items-center justify-center">
-        <div className="flex w-[66rem] h-[42rem] pt-20 bg-cover bg-[url('./assets/sketch.png')]">
-          <div
-            className="flex items-center w-[42rem] justify-center mr-20 "
-            ref={contentRef}
-          >
+    <FabricCanvasContext.Provider value={fabricCanvasRef}>
+      <div className="flex flex-col h-screen bg-cover bg-[url('./assets/background.png')]">
+        <div className="header flex justify-between">
+          <TeamName />
+          <div />
+          <div className="flex items-center justify-end mr-20">
             <img
-              src={capturedData}
-              alt="Captured Content"
-              className="max-w-[30rem] max-h-[30rem]"
+              src={prev}
+              alt="prev"
+              className="h-[5rem] w-[6rem] mr-8 cursor-pointer"
+              onClick={() => {
+                navigate('/photo/filter');
+              }}
             />
-            <DrawZ activeTab={select} />
-            <StickerZ activeTab={select} />
-            <TextZ activeTab={select} />
+            <img
+              src={next}
+              alt="next"
+              className="h-[5rem] w-[6rem] cursor-pointer"
+              onClick={() => {
+                handleNextClick();
+              }}
+            />
           </div>
-          <CustomModal
-            isOpen={modalOpen}
-            onClose={handleModalClose}
-            imageSrc={capturedImage}
-          />
+        </div>
+        <CustomModal
+          isOpen={modalOpen}
+          onClose={handleModalClose}
+          imageSrc={capturedImage}
+        />
 
-          <div className="flex flex-col">
-            <div className="flex justify-center text-base font-bold w-[15rem] mt-2 text-gray-400">
+        <div className="body flex items-center justify-center">
+          <div className="flex w-[66rem] h-[42rem] pt-20 bg-cover bg-[url('./assets/sketch.png')]">
+            <div className="h-full  w-[49rem] flex justify-center items-center">
               <div
-                className={`flex flex-col items-center cursor-pointer mr-[2rem] ${
-                  select === 'Draw' ? 'text-black' : ''
-                }`}
-                onClick={() => {
-                  setSelect('Draw');
+                className="flex items-center justify-center"
+                ref={contentRef}
+                style={{
+                  height,
+                  width,
                 }}
               >
-                <MdDraw size={32} />
-                <div>그리기</div>
-              </div>
-              <div
-                className={`flex flex-col items-center cursor-pointer mr-[2rem] ${
-                  select === 'Stickers' ? 'text-black' : ''
-                }`}
-                onClick={() => {
-                  setSelect('Stickers');
-                }}
-              >
-                <MdOutlineEmojiEmotions size={32} />
-                <div>스티커</div>
-              </div>
-              <div
-                className={`flex flex-col items-center cursor-pointer  ${
-                  select === 'Text' ? 'text-black' : ''
-                }`}
-                onClick={() => {
-                  setSelect('Text');
-                }}
-              >
-                <PiTextTBold size={32} />
-                <div>텍스트</div>
+                <img
+                  src={capturedData}
+                  alt="Captured Content"
+                  style={{
+                    height,
+                    width,
+                  }}
+                />
+
+                <DrawZ activeTab={select} width={width} height={height} />
+                <StickerZ activeTab={select} width={width} height={height} />
+                <TextZ activeTab={select} width={width} height={height} />
               </div>
             </div>
-            <div className="my-5" />
-            {select === 'Draw' && (
-              <div className="w-[15rem]">
-                <Draw />
+
+            <div className="sidebar flex flex-col">
+              <div className="flex justify-center text-base font-bold w-[15rem] mt-2 text-gray-400">
+                <div
+                  className={`flex flex-col items-center cursor-pointer mr-[2rem] ${
+                    select === 'Draw' ? 'text-black' : ''
+                  }`}
+                  onClick={() => {
+                    setSelect('Draw');
+                  }}
+                >
+                  <MdDraw size={32} />
+                  <div>그리기</div>
+                </div>
+                <div
+                  className={`flex flex-col items-center cursor-pointer mr-[2rem] ${
+                    select === 'Stickers' ? 'text-black' : ''
+                  }`}
+                  onClick={() => {
+                    setSelect('Stickers');
+                  }}
+                >
+                  <MdOutlineEmojiEmotions size={32} />
+                  <div>스티커</div>
+                </div>
+                <div
+                  className={`flex flex-col items-center cursor-pointer  ${
+                    select === 'Text' ? 'text-black' : ''
+                  }`}
+                  onClick={() => {
+                    setSelect('Text');
+                  }}
+                >
+                  <PiTextTBold size={32} />
+                  <div>텍스트</div>
+                </div>
               </div>
-            )}
-            {select === 'Stickers' && (
-              <div className="w-[15rem]">
-                <Stickers />
-              </div>
-            )}
-            {select === 'Text' && (
-              <div className="w-[15rem]">
-                <Text />
-              </div>
-            )}
+              <div className="my-5" />
+              {select === 'Draw' && (
+                <div className="w-[15rem]">
+                  <Draw />
+                </div>
+              )}
+              {select === 'Stickers' && (
+                <div className="w-[15rem]">
+                  <Stickers />
+                </div>
+              )}
+              {select === 'Text' && (
+                <div className="w-[15rem]">
+                  <Text />
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </FabricCanvasContext.Provider>
   );
 }
