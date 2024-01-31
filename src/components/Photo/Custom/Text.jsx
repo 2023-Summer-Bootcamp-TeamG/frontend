@@ -37,11 +37,11 @@ export default function Text() {
   const handleAddText = () => {
     // Zustand 스토어에 텍스트와 스타일 속성을 추가
     addText({
-      value: inputValue,
+      text: inputValue,
       size: textSize,
       color: textColor,
-      fontFamily,
-      position: { top: 100, left: 100 },
+      font: fontFamily,
+      position: { x: 100, y: 100 },
     });
 
     // 입력 필드 초기화

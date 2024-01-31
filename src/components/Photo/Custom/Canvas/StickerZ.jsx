@@ -1,3 +1,4 @@
+/* eslint-disable object-shorthand */
 /* eslint-disable no-shadow */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable react/button-has-type */
@@ -12,13 +13,13 @@ import { Rnd } from 'react-rnd';
 
 import useStickerStore from '../../../../stores/Stickers/OnScreenStickersStore';
 
-export default function StickerZ({ activeTab }) {
+export default function StickerZ({ activeTab, width, height }) {
   const stickers = useStickerStore((state) => state.stickers);
   const updateSticker = useStickerStore((state) => state.updateSticker);
   const removeSticker = useStickerStore((state) => state.removeSticker);
 
   const handleDrag = (e, data, index) => {
-    updateSticker(index, { position: { top: data.y, left: data.x } });
+    updateSticker(index, { position: { y: data.y, x: data.x } });
   };
 
   const handleResizeStop = (index, e, direction, ref, delta, position) => {
@@ -35,12 +36,15 @@ export default function StickerZ({ activeTab }) {
   const handleDelete = (index) => {
     removeSticker(index);
   };
+  console.log(stickers);
 
   return (
     <div
-      className="h-[38rem] w-[40rem] absolute bg-transparent "
+      className={` absolute bg-transparent `}
       style={{
         zIndex: activeTab === 'Stickers' ? 3 : 1,
+        height: height,
+        width: width,
       }}
     >
       {stickers.map((sticker, index) => (
@@ -48,7 +52,7 @@ export default function StickerZ({ activeTab }) {
           className="border border-transparent hover:border-black rnd-hover"
           key={index}
           size={{ width: sticker.width, height: sticker.height }}
-          position={{ x: sticker.position.left, y: sticker.position.top }}
+          position={{ x: sticker.position.x, y: sticker.position.y }}
           onDragStop={(e, d) => {
             handleDrag(e, d, index);
           }}
@@ -62,7 +66,7 @@ export default function StickerZ({ activeTab }) {
               style={{
                 width: sticker.size.width,
                 height: sticker.size.height,
-                backgroundImage: `url(${sticker.image})`,
+                backgroundImage: `url(${sticker.url})`,
               }}
             />
             <button

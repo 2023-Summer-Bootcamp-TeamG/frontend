@@ -1,24 +1,47 @@
+/* eslint-disable object-shorthand */
 /* eslint-disable react/button-has-type */
 import { fabric } from 'fabric';
-import { useEffect, useRef } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 
-// import CanvasDraw from 'react-canvas-draw';
-// import frame from '../../../../assets/frame/2x2_w.png';
 import useBrushColorStore from '../../../../stores/Brush/BrushColorStore';
 import useBrushSizeStore from '../../../../stores/Brush/BrushSizeStore';
+import useDrawingStore from '../../../../stores/Drawings/OnScreenDrawingsStore';
+import { FabricCanvasContext } from '../../../../utils/FabricCanvasContext';
 
-export default function DrawZ({ activeTab }) {
+export default function DrawZ({ activeTab, width, height }) {
+  const fabricCanvasRef = useContext(FabricCanvasContext);
   const canvasRef = useRef(null);
-  const fabricCanvasRef = useRef(null);
   const { brushColor } = useBrushColorStore();
   const { brushSize } = useBrushSizeStore();
+  const { addDrawing } = useDrawingStore();
 
   useEffect(() => {
     if (!fabricCanvasRef.current) {
       fabricCanvasRef.current = new fabric.Canvas(canvasRef.current, {
-        height: 448,
-        width: 640,
+        height: height,
+        width: width,
         isDrawingMode: true,
+      });
+
+      fabricCanvasRef.current.on('path:created', (event) => {
+        const { path } = event;
+        const pathData = path.toJSON();
+        const essentialData = {
+          path: pathData.path, // 경로 데이터
+          stroke: pathData.stroke, // 선 색상
+          strokeWidth: pathData.strokeWidth, // 선 두께
+          strokeLineCap: pathData.strokeLineCap, // 선 끝 모양
+          x: pathData.left, // x 좌표
+          y: pathData.top, // y 좌표
+          fill: 0,
+        };
+
+        console.log('Path created: ', pathData);
+        console.log('Path created: ', essentialData);
+
+        // console.log('Path created at position: ', drawingData);
+        // addDrawing(drawingData);
+        addDrawing(essentialData);
       });
     }
 
@@ -37,14 +60,13 @@ export default function DrawZ({ activeTab }) {
         parseInt(brushSize, 10) || 1;
     }
   }, [brushColor, brushSize]);
+
   return (
     <div
-      className="h-[28rem] w-[40rem]  absolute bg-transparent"
+      className=" absolute bg-transparen "
       style={{ zIndex: activeTab === 'Draw' ? 3 : 1 }}
     >
-      <canvas ref={canvasRef} id="canvas">
-        a
-      </canvas>
+      <canvas ref={canvasRef} id="canvas" />
     </div>
   );
 }

@@ -50,9 +50,9 @@ export default function DetailStickers({ onClose, title }) {
     try {
       const size = await getImageSize(image);
       addSticker({
-        image,
-        position: { top: 100, left: 100 },
-        size: { width: 150, height: 150 },
+        url: image,
+        position: { x: 100, y: 100 },
+        size,
       });
     } catch (error) {
       console.error('Error getting image size:', error);

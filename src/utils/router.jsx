@@ -9,8 +9,6 @@ import CustomPage from '../pages/Photo/CustomPage';
 import FilterPage from '../pages/Photo/FilterPage';
 import FinalPage from '../pages/Photo/FinalPage';
 import SelectPage from '../pages/Photo/SelectPage';
-import T2 from '../pages/T2';
-import TestPage from '../pages/TestPage';
 import AlbumPage from '../pages/User/AlbumPage';
 import LoginPage from '../pages/User/LoginPage';
 import RegisterPage from '../pages/User/RegisterPage';
@@ -19,14 +17,6 @@ const routers = createBrowserRouter([
   {
     path: '/',
     element: <MainPage />,
-  },
-  {
-    path: '/test',
-    element: <TestPage />,
-  },
-  {
-    path: '/t2',
-    element: <T2 />,
   },
   {
     path: '/login',

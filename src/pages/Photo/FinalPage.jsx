@@ -5,17 +5,30 @@ import apiV1Instance from '../../api/api-instance';
 import TeamName from '../../components/Common/TeamName';
 import RotateImg from '../../components/Photo/Final/RotateImg';
 import SaveBtn from '../../components/Photo/Final/SaveBtn';
+import useDrawingStore from '../../stores/Drawings/OnScreenDrawingsStore';
+import useStickerStore from '../../stores/Stickers/OnScreenStickersStore';
+import useTextStore from '../../stores/Text/OnScreenTextStore';
+import CanvasWithDrawings from '../T3';
 
 export default function FinalPage() {
   const location = useLocation();
   const { title, image } = location.state || {};
+  const { drawings } = useDrawingStore();
+  const { stickers } = useStickerStore();
+  const { texts } = useTextStore();
 
-  console.log(image);
+  console.log('draw : ', drawings);
+  console.log('stickers : ', stickers);
+  console.log('texts : ', texts);
 
   const clickSaveBtn = async () => {
     const data = {
       title: title,
-      url: image,
+      photo_data: image,
+      result_photo_data: image,
+      stickers: stickers,
+      textboxex: texts,
+      drawings: drawings,
     };
     try {
       const response = await apiV1Instance.post('/photos/', data);
@@ -40,6 +53,7 @@ export default function FinalPage() {
       <TeamName />
 
       <div className="flex items-center justify-center">
+        <CanvasWithDrawings drawings={drawings} width={800} height={600} />
         <div className="flex justify-center items-center w-[66rem] h-[42rem] pt-20 bg-cover bg-[url('./assets/sketch.png')]">
           <RotateImg image={image} />
           <div className="flex flex-col ml-14">
