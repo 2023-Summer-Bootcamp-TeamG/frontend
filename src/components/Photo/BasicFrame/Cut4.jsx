@@ -17,13 +17,13 @@ export default function Cut4() {
     const imageSrc = '2x2_l';
     navigate('/photo/Background', { state: imageSrc });
   };
-  const handleImageClick3 = () => {
-    const imageSrc = '4x1';
-    navigate('/photo/Background', { state: imageSrc });
-  };
+  // const handleImageClick3 = () => {
+  //   const imageSrc = '4x1';
+  //   navigate('/photo/Background', { state: imageSrc });
+  // };
   return (
     <div className="flex items-center p-10">
-      <div className="relative h-96 group">
+      {/* <div className="relative h-96 group">
         <img
           src={frame3}
           alt="frame3"
@@ -33,7 +33,7 @@ export default function Cut4() {
           }}
         />
       </div>
-      <div className="m-12" />
+      <div className="m-12" /> */}
       <div className="relative h-80 group">
         <img
           src={frame2}
