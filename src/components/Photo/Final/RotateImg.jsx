@@ -46,7 +46,7 @@ export default function RotateImg({ image }) {
 
   return (
     <div
-      className="contain relative "
+      className="relative contain "
       onMouseMove={handleMouseMove}
       onMouseOut={handleMouseOut}
       onBlur={() => 0}
@@ -55,18 +55,18 @@ export default function RotateImg({ image }) {
       }}
     >
       <div
-        className="card duration-100"
+        className="duration-100 card"
         style={{
           transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
         }}
       >
         <div
-          className="overlay absolute w-full h-full duration-100"
+          className="absolute w-full h-full duration-100 overlay"
           style={{
             backgroundPosition: `${backgroundPosition.x}% ${backgroundPosition.y}%`,
           }}
         />
-        <img alt="fi" src={image} className="w-[40rem] h-[26rem]" />
+        <img alt="fi" src={image} className="max-w-[40rem] max-h-[26rem]" />
       </div>
     </div>
   );
