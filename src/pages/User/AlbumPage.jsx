@@ -47,7 +47,7 @@ export default function AlbumPage() {
   };
 
   return (
-    <div className="flex flex-col items-center h-screen bg-cover bg-[url('./assets/background.png')]">
+    <div className="flex flex-col items-center h-screen overflow-y-auto bg-cover bg-[url('./assets/background.png')]">
       <TeamName />
       <div className="w-[73rem] h-[43rem] mt-6 px-10">
         <div className="grid grid-cols-3 gap-6">
