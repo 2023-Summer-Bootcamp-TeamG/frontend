@@ -29,7 +29,7 @@ export default function SelectPage() {
         <div />
         <Navbar pathN="/photo/filter" stateOne={stateOne} />
       </div>
-      <div className="flex justify-center items-center">
+      <div className="flex items-center justify-center">
         <div className="flex w-[66rem] h-[42rem] bg-cover bg-[url('./assets/sketch.png')]">
           <div className="flex items-center justify-center w-full h-full">
             {stateOne === '2x2_w' && (
@@ -51,7 +51,7 @@ export default function SelectPage() {
               <Frame1 onlySelect={onlySelect} frameUrl={imageUrl} />
             )}
           </div>
-          <div className="fixed ml-[26rem] bottom-8">
+          <div className="fixed ml-[26rem] bottom-4">
             SPACE BAR를 누르면 사진이 찍힙니다
           </div>
         </div>

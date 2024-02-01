@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 export default function TeamName() {
   return (
-    <div className="flex ml-12 items-center">
+    <div className="flex items-center ml-12">
       <Link to="/">
-        <img src={logo} alt="logo" className="ml-2 h-[6rem]" />
+        <img src={logo} alt="logo" className="ml-2 mt-2 h-[4rem]" />
       </Link>
     </div>
   );
