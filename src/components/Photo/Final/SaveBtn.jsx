@@ -14,7 +14,7 @@ export default function SaveBtn({ title, clickSaveBtn }) {
 
   return (
     <button
-      className="rounded-lg border-solid border-2 flex items-center border-black py-2 pl-6 mr-12 mt-4 bg-white h-12 w-36"
+      className="rounded-lg border-solid border-2 flex items-center border-black py-2 pl-6  mt-5 bg-white h-12 w-36 "
       type="button"
       onClick={handleButtonClick}
       disabled={isClicked}

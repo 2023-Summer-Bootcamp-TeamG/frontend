@@ -27,11 +27,7 @@ export default function SelectPage() {
       <div className="flex justify-between">
         <TeamName />
         <div />
-        <Navbar
-          pathP="/photo/background"
-          pathN="/photo/filter"
-          stateOne={stateOne}
-        />
+        <Navbar pathN="/photo/filter" stateOne={stateOne} />
       </div>
       <div className="flex items-center justify-center">
         <div className="flex w-[66rem] h-[42rem] bg-cover bg-[url('./assets/sketch.png')]">

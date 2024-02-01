@@ -4,20 +4,11 @@
 import { useNavigate } from 'react-router-dom';
 
 import next from '../../assets/next.png';
-import prev from '../../assets/prev.png';
 
-export default function Navbar({ pathP, pathN, stateOne }) {
+export default function Navbar({ pathN, stateOne }) {
   const navigate = useNavigate();
   return (
     <div className="flex items-center mr-20 justify-end basis-1/3">
-      <img
-        src={prev}
-        alt="prev"
-        className="h-[5rem] w-[6rem] mr-8 cursor-pointer"
-        onClick={() => {
-          navigate(pathP);
-        }}
-      />
       <img
         src={next}
         alt="next"

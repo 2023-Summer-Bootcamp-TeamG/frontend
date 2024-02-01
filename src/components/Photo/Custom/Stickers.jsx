@@ -16,8 +16,7 @@ export default function Stickers() {
       {isStickersModalOpen ? (
         <DetailStickers onClose={closeStickersModal} title={title} />
       ) : (
-        <div className="bg-white mt-4 p-6 h-[30rem] w-[19rem] rounded-xl border-black border shadow-[0_4px_12.3px_0px_rgba(0,0,0,0.3)]">
-          <div className="m-1 ml-2 text-lg font-bold">스티커</div>
+        <div className="">
           <div className="grid grid-cols-3 ">
             <Icon
               icon="😀"

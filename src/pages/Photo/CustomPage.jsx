@@ -10,7 +10,6 @@ import { PiTextTBold } from 'react-icons/pi';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import next from '../../assets/next.png';
-import prev from '../../assets/prev.png';
 import TeamName from '../../components/Common/TeamName';
 import DrawZ from '../../components/Photo/Custom/Canvas/DrawZ';
 import StickerZ from '../../components/Photo/Custom/Canvas/StickerZ';
@@ -36,7 +35,7 @@ export default function CustomPage() {
   const navigate = useNavigate();
 
   const captureContent = async () => {
-    const canvas = await html2canvas(contentRef.current);
+    const canvas = await html2canvas(contentRef.current, { useCORS: true });
     const image = canvas.toDataURL('');
     setCapturedImage(image);
   };
@@ -46,16 +45,19 @@ export default function CustomPage() {
     setModalOpen(true);
   };
 
-  const handleModalClose = (confirmed, title, image) => {
+  const handleModalClose = (confirmed, title, image, photoId) => {
     setModalOpen(false);
     if (confirmed) {
-      navigate('/photo/final', { state: { title, image } }); // 타이틀과 이미지 URL 전달
+      navigate('/photo/final', {
+        state: { title, image, capturedData, photoId },
+      });
     }
   };
 
   useEffect(() => {
     console.log('width : ', width);
     console.log('height : ', height);
+    console.log('capture : ', capturedData);
   }, []);
 
   return (
@@ -65,14 +67,6 @@ export default function CustomPage() {
           <TeamName />
           <div />
           <div className="flex items-center justify-end mr-20">
-            <img
-              src={prev}
-              alt="prev"
-              className="h-[5rem] w-[6rem] mr-8 cursor-pointer"
-              onClick={() => {
-                navigate('/photo/filter');
-              }}
-            />
             <img
               src={next}
               alt="next"
