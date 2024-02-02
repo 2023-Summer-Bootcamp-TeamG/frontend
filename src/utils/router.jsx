@@ -6,6 +6,7 @@ import MainPage from '../pages/MainPage';
 import BackgroundPage from '../pages/Photo/BackgroundPage';
 import BasicFramePage from '../pages/Photo/BasicFramePage';
 import CustomPage from '../pages/Photo/CustomPage';
+import EditPage from '../pages/Photo/EditPage';
 import FilterPage from '../pages/Photo/FilterPage';
 import FinalPage from '../pages/Photo/FinalPage';
 import SelectPage from '../pages/Photo/SelectPage';
@@ -73,6 +74,10 @@ const routers = createBrowserRouter([
       {
         path: 'final',
         element: <FinalPage />,
+      },
+      {
+        path: 'edit',
+        element: <EditPage />,
       },
     ],
   },

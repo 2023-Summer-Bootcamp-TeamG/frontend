@@ -23,6 +23,7 @@ export default function FinalPage() {
   console.log('texts : ', texts);
   console.log('cap', capturedData);
   console.log('qrId:', photoId);
+  console.log('result image:', image);
 
   const clickSaveBtn = async () => {
     const data = {

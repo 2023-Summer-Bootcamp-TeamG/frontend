@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import apiV1Instance from '../../api/api-instance';
 import tape1 from '../../assets/album/tape1.png';
@@ -11,6 +12,8 @@ import tape4 from '../../assets/album/tape4.png';
 import TeamName from '../../components/Common/TeamName';
 
 export default function AlbumPage() {
+  const navigate = useNavigate();
+
   const [modal, setModal] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [images, setImages] = useState([]);
@@ -22,7 +25,6 @@ export default function AlbumPage() {
       const response = await apiV1Instance.get('/photos/');
       // 이미지 정보들을 images 상태에 저장
       setImages(response.data);
-      console.log(images);
     } catch (error) {
       alert(error);
     }
@@ -43,6 +45,7 @@ export default function AlbumPage() {
 
   const openModal = (image) => {
     setSelectedImage(image);
+    console.log(image);
     setModal(true);
   };
 
@@ -70,7 +73,6 @@ export default function AlbumPage() {
                   alt={image.title}
                   className="max-w-[20rem] max-h-[20rem]"
                 />
-                {/* <p className="mt-2 text-center">{image.title}</p> */}
               </div>
             </div>
           ))}
@@ -87,8 +89,14 @@ export default function AlbumPage() {
               className="max-w-[40rem] max-h-[40rem] mb-2"
             />
             <p className="mb-2 text-xl font-bold">{selectedImage.title}</p>
+
             <div className="flex justify-center">
-              <button className="px-4 py-2 text-white bg-blue-500 rounded-md ">
+              <button
+                className="px-4 py-2 text-white bg-blue-500 rounded-md "
+                onClick={() => {
+                  navigate('/photo/edit', { state: selectedImage.origin });
+                }}
+              >
                 수정
               </button>
               <div className="px-8" />
