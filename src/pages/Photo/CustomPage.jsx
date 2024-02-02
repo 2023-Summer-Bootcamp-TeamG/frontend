@@ -49,7 +49,7 @@ export default function CustomPage() {
     setModalOpen(false);
     if (confirmed) {
       navigate('/photo/final', {
-        state: { title, image, capturedData, photoId },
+        state: { title, image, capturedData, photoId, width, height },
       });
     }
   };

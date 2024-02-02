@@ -17,6 +17,7 @@ const useDrawingStore = create((set) => ({
     set((state) => ({
       drawings: state.drawings.filter((_, i) => i !== index),
     })),
+  clearDrawings: () => set(() => ({ stickers: [] })),
 }));
 
 export default useDrawingStore;
