@@ -12,7 +12,8 @@ import useTextStore from '../../stores/Text/OnScreenTextStore';
 
 export default function FinalPage() {
   const location = useLocation();
-  const { title, image, capturedData, photoId } = location.state || {};
+  const { title, image, capturedData, photoId, width, height } =
+    location.state || {};
   const { drawings } = useDrawingStore();
   const { stickers } = useStickerStore();
   const { texts } = useTextStore();
@@ -23,6 +24,8 @@ export default function FinalPage() {
   console.log('texts : ', texts);
   console.log('cap', capturedData);
   console.log('qrId:', photoId);
+  console.log('result image:', image);
+  console.log('노피들', width, height);
 
   const clickSaveBtn = async () => {
     const data = {
@@ -32,10 +35,16 @@ export default function FinalPage() {
       stickers: stickers,
       textboxes: texts,
       drawings: drawings,
+      width: width,
+      height: height,
     };
     try {
       const response = await apiV1Instance.post('/photos/', data);
       console.log(response.data);
+
+      useDrawingStore.getState().clearDrawings();
+      useStickerStore.getState().clearStickers();
+      useTextStore.getState().clearTexts();
     } catch (error) {
       alert(error);
     }

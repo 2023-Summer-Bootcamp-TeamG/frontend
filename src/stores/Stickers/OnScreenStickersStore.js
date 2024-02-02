@@ -17,6 +17,7 @@ const useStickerStore = create((set) => ({
     set((state) => ({
       stickers: state.stickers.filter((_, i) => i !== index),
     })),
+  clearStickers: () => set(() => ({ stickers: [] })),
 }));
 
 export default useStickerStore;

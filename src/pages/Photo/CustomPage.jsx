@@ -4,7 +4,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 
 import html2canvas from 'html2canvas';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { MdDraw, MdOutlineEmojiEmotions } from 'react-icons/md';
 import { PiTextTBold } from 'react-icons/pi';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -49,16 +49,10 @@ export default function CustomPage() {
     setModalOpen(false);
     if (confirmed) {
       navigate('/photo/final', {
-        state: { title, image, capturedData, photoId },
+        state: { title, image, capturedData, photoId, width, height },
       });
     }
   };
-
-  useEffect(() => {
-    console.log('width : ', width);
-    console.log('height : ', height);
-    console.log('capture : ', capturedData);
-  }, []);
 
   return (
     <FabricCanvasContext.Provider value={fabricCanvasRef}>

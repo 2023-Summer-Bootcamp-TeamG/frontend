@@ -13,6 +13,7 @@ const useTextStore = create((set) => ({
     set((state) => ({
       texts: state.texts.filter((_, i) => i !== index),
     })),
+  clearTexts: () => set(() => ({ stickers: [] })),
 }));
 
 export default useTextStore;

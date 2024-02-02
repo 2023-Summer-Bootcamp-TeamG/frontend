@@ -6,6 +6,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import apiV1Instance from '../../api/api-instance';
 import tape1 from '../../assets/album/tape1.png';
@@ -18,6 +19,8 @@ import { FaTrash } from 'react-icons/fa6';
 import { FaRegEdit } from 'react-icons/fa';
 
 export default function AlbumPage() {
+  const navigate = useNavigate();
+
   const [modal, setModal] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [images, setImages] = useState([]);
@@ -30,7 +33,6 @@ export default function AlbumPage() {
       const response = await apiV1Instance.get('/photos/');
       // 이미지 정보들을 images 상태에 저장
       setImages(response.data);
-      console.log(images);
     } catch (error) {
       alert(error);
     }
@@ -56,6 +58,7 @@ export default function AlbumPage() {
 
   const openModal = (image) => {
     setSelectedImage(image);
+    console.log(image);
     setModal(true);
   };
 
@@ -83,7 +86,6 @@ export default function AlbumPage() {
                   alt={image.title}
                   className="max-w-[20rem] max-h-[20rem]"
                 />
-                {/* <p className="mt-2 text-center">{image.title}</p> */}
               </div>
             </div>
           ))}
