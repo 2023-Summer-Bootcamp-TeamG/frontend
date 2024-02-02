@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
 import Frame4w from '../../components/Photo/BasicFrame/Frame4w';
-import Frame4long from '../../components/Photo/BasicFrame/Frame4long';
+// import Frame4long from '../../components/Photo/BasicFrame/Frame4long';
 import Frame2l from '../../components/Photo/BasicFrame/Frame2l';
 import Frame2w from '../../components/Photo/BasicFrame/Frame2w';
 import Frame1 from '../../components/Photo/BasicFrame/Frame1';
@@ -38,9 +38,9 @@ export default function SelectPage() {
             {stateOne === '2x2_l' && (
               <Frame4l onlySelect={onlySelect} frameUrl={imageUrl} />
             )}
-            {stateOne === '4x1' && (
+            {/* {stateOne === '4x1' && (
               <Frame4long onlySelect={onlySelect} frameUrl={imageUrl} />
-            )}
+            )} */}
             {stateOne === '2x1_w' && (
               <Frame2w onlySelect={onlySelect} frameUrl={imageUrl} />
             )}

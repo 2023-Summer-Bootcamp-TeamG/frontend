@@ -13,7 +13,7 @@ import FilterBtn from '../../components/Photo/Fliter/FilterBtn';
 import useImageStore from '../../stores/Background/useImageStore';
 import Frame4w from '../../components/Photo/BasicFrame/Frame4w';
 import Frame4l from '../../components/Photo/BasicFrame/Frame4l';
-import Frame4long from '../../components/Photo/BasicFrame/Frame4long';
+// import Frame4long from '../../components/Photo/BasicFrame/Frame4long';
 import Frame2w from '../../components/Photo/BasicFrame/Frame2w';
 import Frame2l from '../../components/Photo/BasicFrame/Frame2l';
 import Frame1 from '../../components/Photo/BasicFrame/Frame1';
@@ -77,7 +77,7 @@ export default function FilterPage() {
         <TeamName />
 
         {/* <Navbar pathP="/photo/select" pathN="/photo/custom" stateOne={data} /> */}
-        <div className="flex items-center mr-20 justify-end basis-1/3">
+        <div className="flex items-center justify-end mr-20 basis-1/3">
           <img
             src={next}
             alt="next"
@@ -92,7 +92,7 @@ export default function FilterPage() {
       <div className="flex items-center justify-center">
         <div className="flex w-[66rem] h-[42rem] bg-cover bg-[url('./assets/sketch.png')]">
           <div className="flex items-center justify-center">
-            <div className="flex items-center justify-center ml-48 mr-28 relative">
+            <div className="relative flex items-center justify-center ml-48 mr-28">
               {stateOne === '2x2_w' && (
                 <div ref={componentRef}>
                   <Frame4w
@@ -113,7 +113,7 @@ export default function FilterPage() {
                   />
                 </div>
               )}
-              {stateOne === '4x1' && (
+              {/* {stateOne === '4x1' && (
                 <div ref={componentRef}>
                   <Frame4long
                     filterUrl={filterUrl}
@@ -122,7 +122,7 @@ export default function FilterPage() {
                     applyFilter={applyFilter}
                   />
                 </div>
-              )}
+              )} */}
               {stateOne === '2x1_w' && (
                 <div ref={componentRef}>
                   <Frame2w
