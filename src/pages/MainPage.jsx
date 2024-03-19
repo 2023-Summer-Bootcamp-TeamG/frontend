@@ -1,10 +1,11 @@
-/* eslint-disable simple-import-sort/imports */
+
 /* eslint-disable react/function-component-definition */
 /* eslint-disable react/no-unstable-nested-components */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
+
 import useIsLoginStore from '../stores/isLoginStore';
 import LogoutBtn from '../components/User/LogoutBtn';
 
@@ -33,10 +34,12 @@ export default function MainPage() {
                 ) : (
                   <div
                     className="w-[6rem] h-[2rem] ml-[0.5rem] bg-cover bg-[url('./assets/login.png')] cursor-pointer"
+
                     onClick={() => {
                       navigate('/login');
                     }}
                   />
+
                 )}
               </div>
               <div className="fixed mt-[11.5rem] ml-[13.5rem]">
@@ -60,6 +63,7 @@ export default function MainPage() {
           </div>
 
           <div className="w-[28rem] h-[35rem] bg-cover mt-24 ml-8 bg-[url('./assets/rabbit.png')]" />
+
         </div>
       </PageTransition>
     </div>

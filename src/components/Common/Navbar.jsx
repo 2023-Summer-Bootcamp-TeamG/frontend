@@ -8,6 +8,7 @@ import next from '../../assets/next.png';
 export default function Navbar({ pathN, stateOne }) {
   const navigate = useNavigate();
   return (
+
     <div className="flex items-center mr-20 justify-end basis-1/3">
       <img
         src={next}
@@ -17,15 +18,16 @@ export default function Navbar({ pathN, stateOne }) {
           navigate(pathN, { state: stateOne });
         }}
       />
+
     </div>
   );
 }
 {
   /* <div className="flex items-center h-[7rem]">
-      <div className="basis-1/3 pl-12 pb-20 pt-3">
+      <div className="pt-3 pb-20 pl-12 basis-1/3">
         <Link
           to="/"
-          className=" text-black italic font-black text-3xl tracking-tighter leading-normal  "
+          className="text-3xl italic font-black leading-normal tracking-tighter text-black "
           style={{
             textShadow: '0px 4px 4px rgba(0, 0, 0, 0.5)',
             WebkitTextStroke: '1.6px white',
