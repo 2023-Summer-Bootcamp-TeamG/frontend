@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable react/jsx-curly-brace-presence */
-import ImageOne from '../Select/imageOne';
+import ImageOne from '../Select/ImageOne';
 
 export default function Frame4long({
   frameUrl,

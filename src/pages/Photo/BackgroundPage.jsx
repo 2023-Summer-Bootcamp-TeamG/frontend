@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import TeamName from '../../components/Common/TeamName';
 import SelectBackground from '../../components/Photo/Background/SelectBackground';
 import Frame4w from '../../components/Photo/BasicFrame/Frame4w';
-import Frame4long from '../../components/Photo/BasicFrame/Frame4long';
+// import Frame4long from '../../components/Photo/BasicFrame/Frame4long';
 import Frame2l from '../../components/Photo/BasicFrame/Frame2l';
 import Frame2w from '../../components/Photo/BasicFrame/Frame2w';
 import Frame1 from '../../components/Photo/BasicFrame/Frame1';
@@ -27,13 +27,9 @@ export default function BackgroundPage() {
       <div className="flex justify-between">
         <TeamName />
         <div />
-        <Navbar
-          pathP="/photo/basicFrame"
-          pathN="/photo/select"
-          stateOne={stateOne}
-        />
+        <Navbar pathN="/photo/select" stateOne={stateOne} />
       </div>
-      <div className="flex justify-center items-center">
+      <div className="flex items-center justify-center">
         <div className="flex w-[66rem] h-[42rem] bg-cover bg-[url('./assets/sketch.png')]">
           <div className="flex items-center justify-center basis-3/4">
             {stateOne === '2x2_w' && (
@@ -42,9 +38,9 @@ export default function BackgroundPage() {
             {stateOne === '2x2_l' && (
               <Frame4l frameUrl={imageUrl} className="max-w-96 max-h-96" />
             )}
-            {stateOne === '4x1' && (
+            {/* {stateOne === '4x1' && (
               <Frame4long frameUrl={imageUrl} className="max-w-96 max-h-96" />
-            )}
+            )} */}
             {stateOne === '2x1_w' && (
               <Frame2w frameUrl={imageUrl} className="max-w-96 max-h-96" />
             )}

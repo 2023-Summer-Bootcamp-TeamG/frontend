@@ -17,35 +17,22 @@ export default function Stickers() {
         <DetailStickers onClose={closeStickersModal} title={title} />
       ) : (
         <div className="">
-          <div className="font-bold ml-2 m-1 text-lg">스티커</div>
-          <div className=" grid grid-cols-3 ">
+          <div className="grid grid-cols-3 ">
             <Icon
               icon="😀"
-              title="기본티콘"
-              setOpen={setStickersModalOpen}
-              setTitle={setTitle}
-            />
-            <Icon
-              icon="👾"
-              title="픽셀티콘"
-              setOpen={setStickersModalOpen}
-              setTitle={setTitle}
-            />
-            <Icon
-              icon="✨"
-              title="기호"
-              setOpen={setStickersModalOpen}
-              setTitle={setTitle}
-            />
-            <Icon
-              icon="🧸"
-              title="캐릭터"
+              title="이모티콘"
               setOpen={setStickersModalOpen}
               setTitle={setTitle}
             />
             <Icon
               icon="🗂️"
               title="나만의 스티커"
+              setOpen={setStickersModalOpen}
+              setTitle={setTitle}
+            />
+            <Icon
+              icon="🤖"
+              title="AI 스티커"
               setOpen={setStickersModalOpen}
               setTitle={setTitle}
             />
